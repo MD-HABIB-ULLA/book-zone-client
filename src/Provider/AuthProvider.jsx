@@ -10,6 +10,7 @@ import {
   signOut,
   updateProfile,
 } from "firebase/auth";
+import axios from "axios";
 export const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -61,22 +62,53 @@ const AuthProvider = ({ children }) => {
         setLoading(false);
       });
   };
+  // useEffect(() => {
+  //   const unsubscribe = onAuthStateChanged(
+  //     auth,
+  //     (currentUser) => {
+  //       setUser(currentUser);
+  //       setLoading(false);
+  //     },
+  //     (error) => {
+  //       console.error("Authentication error:", error);
+  //       setLoading(false);
+  //     }
+  //   );
+  //   return () => {
+  //     unsubscribe();
+  //   };
+  // }, []);
+
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(
-      auth,
-      (currentUser) => {
-        setUser(currentUser);
-        setLoading(false);
-      },
-      (error) => {
-        console.error("Authentication error:", error);
-        setLoading(false);
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      const userEmail = currentUser?.email || user?.email;
+      const loggedUser = { email: userEmail };
+      setUser(currentUser);
+      console.log("current user", currentUser);
+      setLoading(false);
+      //if the user exists then issue a token
+      if (currentUser) {
+        axios
+          .post("https://book-zone-server.vercel.app/jwt", loggedUser, {
+            withCredentials: true,
+          })
+          .then((res) => {
+            console.log("token response", res.data);
+          });
+      } else {
+        axios
+          .post("https://book-zone-server.vercel.app/logout", loggedUser, {
+            withCredentials: true,
+          })
+          .then((res) => {
+            console.log("logout user", res.data);
+          });
       }
-    );
+    });
     return () => {
-      unsubscribe();
+      return unsubscribe();
     };
-  }, []);
+  });
 
   const authInfo = {
     user,
@@ -87,8 +119,7 @@ const AuthProvider = ({ children }) => {
     singInUserByGoogle,
     singInUserByGithub,
     loading,
-    setLoading
-
+    setLoading,
   };
   return (
     <div>

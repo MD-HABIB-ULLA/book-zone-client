@@ -9,9 +9,9 @@ import toast from "react-hot-toast";
 
 const Navber = () => {
   const { user, signOutUser, loading } = useContext(AuthContext);
-  console.log(user)
+
   const handleLogout = () => {
-    console.log('hello')
+  
     signOutUser()
       .then(() => {
         toast.success("Sign-out successful");

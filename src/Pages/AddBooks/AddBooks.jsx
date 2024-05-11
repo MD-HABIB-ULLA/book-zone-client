@@ -10,6 +10,7 @@ import Button from "../../Components/Button/Button";
 import { useState } from "react";
 import img from "../../assets/addbooks.svg";
 import axios from "axios";
+import toast from "react-hot-toast";
 const AddBooks = () => {
   const [bookData, setBookData] = useState({
     image: "",
@@ -32,8 +33,19 @@ const AddBooks = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("https://book-zone-server.vercel.app/addbooks", { bookData })
-      .then((res) => console.log(res.data))
+      .post(
+        "https://book-zone-server.vercel.app/addbooks",
+        { bookData },
+        {
+          withCredentials: true,
+        }
+      )
+      .then((res) => {
+        if (res.data.acknowledged) {
+          toast.success("Book added successfully");
+          e.target.reset();
+        }
+      })
       .catch((err) => console.log(err));
   };
 
@@ -91,9 +103,7 @@ const AddBooks = () => {
                   value={bookData.category}
                   onChange={handleChange}
                 >
-                  <MenuItem value="Children's Health">
-                    Children's Health
-                  </MenuItem>
+                  <MenuItem value="Entertainment">Entertainment</MenuItem>
                   <MenuItem value="Computers & Technology">
                     Computers & Technology
                   </MenuItem>

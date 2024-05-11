@@ -18,41 +18,39 @@ const Categories = () => {
       </div>
       <div className=" mt-4  grid md:grid-cols-2 grid-cols-1 w-full gap-5 ">
         {categoriesOfEveryBooks.map((categorie, i) => (
-          <>
-            {" "}
-            <Link to={`/categorie/${categorie.category}`} key={i} className="h-44 w-full md:px-20 px-5">
-              <div className="h-full w-full overflow-hidden flex justify-between bg-white  rounded-3xl relative">
-                <div className="h-full w-full absolute  hover:bg-[#2c2b2b67] duration-500  d pl-10  flex items-start pt-5 text-white font-bold ">
-                  <p className="bg-gradient-to-r from-[#9e24b2] to-[#4724b2] uppercase px-3 py-1 rounded-full">
-                    {categorie.category}
-                  </p>
-                </div>
-                <div
-                  className="bg-center bg-cover bg-no-repeat h-full w-1/3 rounded-l-xl"
-                  style={{
-                    backgroundImage:
-                      `url(${categorie.images[2]})`,
-                  }}
-                >
-                  {" "}
-                </div>
-                <div
-                  className="bg-center bg-cover bg-no-repeat h-full w-1/3 "
-                  style={{
-                    backgroundImage:
-                      `url(${categorie.images[1]})`,
-                  }}
-                ></div>
-                <div
-                  className="bg-center bg-cover bg-no-repeat h-full w-1/3 rounded-r-3xl"
-                  style={{
-                    backgroundImage:
-                      `url(${categorie.images[0]})`,
-                  }}
-                ></div>
+          <Link
+            to={`/categorie/${categorie.category}`}
+            key={i}
+            className="h-44 w-full md:px-20 px-5"
+          >
+            <div className="h-full w-full overflow-hidden flex justify-between bg-white  rounded-3xl relative">
+              <div className="h-full w-full absolute  hover:bg-[#2c2b2b67] duration-500  d pl-10  flex items-start pt-5 text-white font-bold ">
+                <p className="bg-gradient-to-r from-[#9e24b2] to-[#4724b2] uppercase px-3 py-1 rounded-full">
+                  {categorie.category}
+                </p>
               </div>
-            </Link>
-          </>
+              <div
+                className="bg-center bg-cover bg-no-repeat h-full w-1/3 rounded-l-xl"
+                style={{
+                  backgroundImage: `url(${categorie.images[2]})`,
+                }}
+              >
+                {" "}
+              </div>
+              <div
+                className="bg-center bg-cover bg-no-repeat h-full w-1/3 "
+                style={{
+                  backgroundImage: `url(${categorie.images[1]})`,
+                }}
+              ></div>
+              <div
+                className="bg-center bg-cover bg-no-repeat h-full w-1/3 rounded-r-3xl"
+                style={{
+                  backgroundImage: `url(${categorie.images[0]})`,
+                }}
+              ></div>
+            </div>
+          </Link>
         ))}
       </div>
     </div>
