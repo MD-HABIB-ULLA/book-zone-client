@@ -1,22 +1,23 @@
 import img from "../../assets/errorpage.svg"
+import img1 from "../../assets/errorbg.png"
+import { Link } from "react-router-dom";
+import Button from "../../Components/Button/Button";
 
 const ErrorPage = () => {
   return (
     <div>
-      <div className="hero min-h-screen bg-base-200">
+      <div style={{backgroundImage: `url(${img1})`}} className="hero min-h-screen bg-right bg-contain bg-no-repeat bg-white">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <img
             src={img}
-            className="max-w-sm rounded-lg shadow-2xl"
+            className="max-w-lg rounded-lg "
           />
           <div>
-            <h1 className="text-5xl font-bold">Box Office News!</h1>
+            <h1 className="text-5xl font-bold">Page Not Found</h1>
             <p className="py-6">
-              Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-              excepturi exercitationem quasi. In deleniti eaque aut repudiandae
-              et a id nisi.
+            Sorry, we couldn't find the requested page. Please double-check the URL or try again later. If the issue persists, feel free to contact us for assistance.
             </p>
-            <button className="btn btn-primary">Get Started</button>
+            <Link className=" "><Button text={'Back To Home'}></Button></Link>
           </div>
         </div>
       </div>

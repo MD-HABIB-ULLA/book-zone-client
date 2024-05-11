@@ -13,11 +13,13 @@ import AllBooks from "./Pages/AllBooks/AllBooks.jsx";
 import BorrowedBooks from "./Pages/BorrowedBooks/BorrowedBooks.jsx";
 import Home from "./Pages/Home/Home.jsx";
 import Category from "./Pages/Category/Category.jsx";
+import ErrorPage from "./Pages/ErrorPage/ErrorPage.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
+    errorElement:<ErrorPage/>,
     children: [
       {
         path: "/",
