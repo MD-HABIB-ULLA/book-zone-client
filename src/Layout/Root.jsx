@@ -6,7 +6,7 @@ import Footer from "../Components/Footer/Footer";
 
 const Root = () => {
     return (
-        <div className="dark:bg-[#212121] bg-gray-100 duration-500">
+        <div className="dark:bg-[#212121] bg-[#F6F9FC] duration-500">
              <Toaster position="top-center" reverseOrder={false} />
             <Navber/>
             <Outlet/>

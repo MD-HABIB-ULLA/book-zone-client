@@ -43,7 +43,15 @@ const AddBooks = () => {
       .then((res) => {
         if (res.data.acknowledged) {
           toast.success("Book added successfully");
-          e.target.reset();
+          setBookData({
+            image: "",
+            name: "",
+            quantity: "",
+            author: "",
+            category: "",
+            description: "",
+            rating: "",
+          });
         }
       })
       .catch((err) => console.log(err));
@@ -104,17 +112,11 @@ const AddBooks = () => {
                   onChange={handleChange}
                 >
                   <MenuItem value="Entertainment">Entertainment</MenuItem>
-                  <MenuItem value="Computers & Technology">
-                    Computers & Technology
-                  </MenuItem>
+                  <MenuItem value="Computers">Computers</MenuItem>
                   <MenuItem value="Home & Garden">Home & Garden</MenuItem>
-                  <MenuItem value="Pets & Animal Care">
-                    Pets & Animal Care
-                  </MenuItem>
-                  <MenuItem value="Historical Biographies">
-                    Historical Biographies
-                  </MenuItem>
-                  <MenuItem value="Home Care">Home Care</MenuItem>
+                  <MenuItem value="History">History</MenuItem>
+                  <MenuItem value="Sports">Sports</MenuItem>
+                  <MenuItem value="Medical">Medical</MenuItem>
                 </Select>
               </FormControl>
               <TextField
