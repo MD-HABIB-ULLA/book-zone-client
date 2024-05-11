@@ -16,7 +16,7 @@ const Categories = () => {
       <div className="  md:text-5xl text-2xl container m-auto dark:text-white text-black duration-500 font-bold md:py-10 py-5 border-l-8 pl-4 border-[#4724b2]">
         Our Books Categories
       </div>
-      <div className=" mt-4  grid md:grid-cols-2 grid-cols-1 w-full gap-5 ">
+      <div className=" mt-4  grid grid-cols-2 w-full gap-5 ">
         {categoriesOfEveryBooks.map((categorie, i) => (
           <Link
             to={`/categorie/${categorie.category}`}
@@ -24,8 +24,8 @@ const Categories = () => {
             className="h-44 w-full md:px-20 px-5"
           >
             <div className="h-full w-full overflow-hidden flex justify-between bg-white  rounded-3xl relative">
-              <div className="h-full w-full absolute  hover:bg-[#2c2b2b67] duration-500  d pl-10  flex items-start pt-5 text-white font-bold ">
-                <p className="bg-gradient-to-r from-[#9e24b2] to-[#4724b2] uppercase px-3 py-1 rounded-full">
+              <div className="h-full w-full absolute  hover:bg-[#2c2b2b67] duration-500   md:pl-10 pl-2  flex items-start md:pt-5 pt-2 text-white font-bold ">
+                <p className="text-sm bg-gradient-to-r from-[#9e24b2] to-[#4724b2] uppercase px-3 py-1 rounded-full">
                   {categorie.category}
                 </p>
               </div>

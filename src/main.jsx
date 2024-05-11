@@ -12,7 +12,6 @@ import AddBooks from "./Pages/AddBooks/AddBooks.jsx";
 import AllBooks from "./Pages/AllBooks/AllBooks.jsx";
 import BorrowedBooks from "./Pages/BorrowedBooks/BorrowedBooks.jsx";
 import Home from "./Pages/Home/Home.jsx";
-import Categories from "./Components/Categories/Categories.jsx";
 import Category from "./Pages/Category/Category.jsx";
 
 const router = createBrowserRouter([
