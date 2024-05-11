@@ -1,0 +1,73 @@
+import React from "react";
+import ReactDOM from "react-dom/client";
+
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import "./index.css";
+import Root from "./Layout/Root.jsx";
+import Login from "./Pages/Login/Login.jsx";
+import AuthProvider from "./Provider/AuthProvider.jsx";
+import SignUp from "./Pages/Resgister/SignUp.jsx";
+import PrivateRoute from "./Private/PrivateRoute.jsx";
+import AddBooks from "./Pages/AddBooks/AddBooks.jsx";
+import AllBooks from "./Pages/AllBooks/AllBooks.jsx";
+import BorrowedBooks from "./Pages/BorrowedBooks/BorrowedBooks.jsx";
+import Home from "./Pages/Home/Home.jsx";
+import Categories from "./Components/Categories/Categories.jsx";
+import Category from "./Pages/Category/Category.jsx";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Root />,
+    children: [
+      {
+        path: "/",
+        element: <Home />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/register",
+        element: <SignUp />,
+      },
+      {
+        path: "/categorie/:category",
+        element: <Category />,
+      },
+      {
+        path: "/addbook",
+        element: (
+          <PrivateRoute>
+            <AddBooks />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/allbooks",
+        element: (
+          <PrivateRoute>
+            <AllBooks />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/borrowedbooks",
+        element: (
+          <PrivateRoute>
+            <BorrowedBooks />
+          </PrivateRoute>
+        ),
+      },
+    ],
+  },
+]);
+
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <React.StrictMode>
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
+  </React.StrictMode>
+);
