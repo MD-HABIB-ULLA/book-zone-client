@@ -135,7 +135,7 @@ const Navber = () => {
             <div className="skeleton w-10 h-10   bg-[#4724b2] uppercase rounded-full shrink-0"></div>
             <div className="skeleton w-16 h-10   bg-[#4724b2] uppercase rounded shrink-0"></div>
           </>
-        ) : user?.email ? (
+        ) : user?.photoURL ? (
           <div className="flex items-center gap-4">
               <div className="relative avatar">
                 <div

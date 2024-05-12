@@ -14,6 +14,7 @@ import BorrowedBooks from "./Pages/BorrowedBooks/BorrowedBooks.jsx";
 import Home from "./Pages/Home/Home.jsx";
 import Category from "./Pages/Category/Category.jsx";
 import ErrorPage from "./Pages/ErrorPage/ErrorPage.jsx";
+import BookDetails from "./Pages/BookDetails/BookDetails.jsx";
 
 const router = createBrowserRouter([
   {
@@ -36,8 +37,14 @@ const router = createBrowserRouter([
       {
         path: "/categorie/:category",
         loader: ({ params }) =>
-          fetch(`http://localhost:4000/category/${params.category}`),
-        element: <Category />,
+          fetch(
+            `https://book-zone-server.vercel.app/category/${params.category}`
+          ),
+        element: (
+          <PrivateRoute>
+            <Category />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/addbook",
@@ -60,6 +67,18 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <BorrowedBooks />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/books/:id",
+        loader: ({ params }) =>
+          fetch(
+            `https://book-zone-server.vercel.app/books/${params.id}`
+          ),
+        element: (
+          <PrivateRoute>
+            <BookDetails />
           </PrivateRoute>
         ),
       },

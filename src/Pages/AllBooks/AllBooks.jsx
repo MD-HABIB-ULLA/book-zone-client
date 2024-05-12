@@ -2,15 +2,46 @@ import axios from "axios";
 import { TfiWrite } from "react-icons/tfi";
 import { FaRegStar, FaStar } from "react-icons/fa";
 import Button from "../../Components/Button/Button";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Rating from "react-rating";
 import { CiViewTable } from "react-icons/ci";
 import { CiCreditCard1 } from "react-icons/ci";
+import { AuthContext } from "../../Provider/AuthProvider";
+import { Link } from "react-router-dom";
 const AllBooks = () => {
   const [booksData, setBookData] = useState([]);
-  const [laading, setLoading] = useState(true);
+  const [formbooksData, setFormBookData] = useState([]);
+  const [formbooksDataId, setFormBookDataId] = useState("");
+  const { loading } = useContext(AuthContext);
+  const [loading1, setLoading] = useState(true);
   const [formet, setFormet] = useState("card");
   const [booksValue, setBooksValue] = useState("all");
+
+  // console.log(formbooksData);
+
+  useEffect(() => {
+    fetch(`https://book-zone-server.vercel.app/books/${formbooksDataId}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setFormBookData(data);
+      });
+  }, [formbooksDataId]);
+  const handleFormData = (id) => {
+    console.log(id);
+    setFormBookDataId(id);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const authorName = form.authorName.value;
+    const bookName = form.bookName.value;
+    const bookImage = form.bookImage.value;
+    const category = form.category.value;
+    const rating = form.rating.value;
+    const data = { authorName, bookName, bookImage, category, rating };
+    console.log(data);
+  };
 
   // console.log(totalcount)
   const selectedOption = (e) => {
@@ -45,7 +76,7 @@ const AllBooks = () => {
         })
         .catch((err) => console.log(err));
     }
-  }, [booksValue]);
+  }, [booksValue, loading]);
 
   return (
     <div className="container m-auto ">
@@ -95,8 +126,10 @@ const AllBooks = () => {
         </div>
 
         {/* showing data  */}
-        {laading ? (
-          ""
+        {loading1 ? (
+          <div className="text-center min-h-screen flex items-center justify-center text-6xl">
+            <span className="loading dark:bg-white bg-black loading-spinner loading-lg m-auto"></span>
+          </div>
         ) : (
           <>
             <div
@@ -109,17 +142,23 @@ const AllBooks = () => {
                   key={i}
                   className=" flex  items-center   bg-white border duration-500 border-gray-200 rounded-lg shadow flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 h-64 dark:hover:bg-gray-700"
                 >
-                  <img
-                    className="object-cover rounded-t-lg w-40 md:w-52 md:rounded-none md:rounded-l-lg"
-                    src={book.bookData.image}
-                    alt=""
-                    style={{ aspectRatio: "9/10" }} // Set the desired aspect ratio here
-                  />
+                  <Link
+                    className="h-full cursor-pointer"
+                    to={`/books/${book._id}`}
+                  >
+                    {" "}
+                    <img
+                      className="object-cover h-full rounded-t-lg w-40 md:w-52 md:rounded-none md:rounded-l-lg"
+                      src={book.bookData.image}
+                      alt=""
+                      style={{ aspectRatio: "9/10" }} // Set the desired aspect ratio here
+                    />
+                  </Link>
                   <div className="flex flex-col justify-between p-4 leading-normal h-full w-full ">
                     <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">
                       {book.bookData.name}
                     </h5>
-                    <p className="mb-3 font-normal text-gray-700 dark:text-gray-400  h-full">
+                    <div className="mb-3 font-normal text-gray-700 dark:text-gray-400  h-full">
                       <div className="flex items-center gap-4">
                         <TfiWrite className="text-xl dark:text-white text-black font-bold" />{" "}
                         {book.bookData.author}
@@ -140,8 +179,17 @@ const AllBooks = () => {
                         initialRating={book.bookData.rating}
                         readonly
                       />
-                    </p>
-                    <Button text={"Update"} />
+                    </div>
+                    <button
+                      className=" text-white font-bold border-none btn bg-gradient-to-r from-[#9e24b2] to-[#4724b2] uppercase"
+                      onClick={() => {
+                        handleFormData(book._id);
+                        document.getElementById("my_modal_5").showModal();
+                      }}
+                    >
+                      {" "}
+                      Update
+                    </button>
                   </div>
                 </div>
               ))}
@@ -184,11 +232,13 @@ const AllBooks = () => {
                       className="hover:bg-gray-100 dark:hover:bg-gray-600 md:table-row md:flex md:flex-col md:items-center"
                     >
                       <td className="py-2 whitespace-nowrap md:py-4 md:px-3">
-                        <img
-                          className="w-36 h-24 object-cover rounded-lg md:w-full md:h-auto"
-                          src={book.bookData.image}
-                          alt=""
-                        />
+                        <Link to={`/books/${book._id}`}>
+                          <img
+                            className="w-36 h-24 object-cover rounded-lg md:w-full md:h-auto"
+                            src={book.bookData.image}
+                            alt=""
+                          />
+                        </Link>
                       </td>
                       <td className="px-3 py-4 whitespace-nowrap md:py-2 md:px-3">
                         {book.bookData.name}
@@ -215,7 +265,13 @@ const AllBooks = () => {
                         />
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap md:py-2 md:px-3">
-                        <Button text={"Update"} />
+                        <Button
+                          onClick={(book) => {
+                            handleFormData(book),
+                              document.getElementById("my_modal_5").showModal();
+                          }}
+                          text={"Update"}
+                        />
                       </td>
                     </tr>
                   ))}
@@ -225,6 +281,100 @@ const AllBooks = () => {
           </>
         )}
       </div>
+      <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
+        <form className="modal-box" onSubmit={handleSubmit}>
+          <h3 className="font-bold text-lg">Update The Book</h3>
+          <div className="py-4 flex flex-col gap-4">
+            <div>
+              <label htmlFor="bookImage" className="font-bold mb-1">
+                Book Image
+              </label>
+              <input
+                type="text"
+                id="bookImage"
+                name="bookImage"
+                defaultValue={formbooksData?.bookData?.image}
+                placeholder="Enter book image URL"
+                className="input input-bordered w-full"
+              />
+            </div>
+            <div>
+              <label htmlFor="bookName" className="font-bold">
+                Book Name
+              </label>
+              <input
+                type="text"
+                id="bookName"
+                name="bookName"
+                defaultValue={formbooksData?.bookData?.name}
+                placeholder="Enter book name"
+                className="input input-bordered w-full"
+              />
+            </div>
+            <div>
+              <label htmlFor="authorName" className="font-bold">
+                Author Name
+              </label>
+              <input
+                type="text"
+                id="authorName"
+                name="authorName"
+                defaultValue={formbooksData?.bookData?.author}
+                placeholder="Enter author name"
+                className="input input-bordered w-full"
+              />
+            </div>
+            <div>
+              <label htmlFor="category" className="font-bold">
+                Category
+              </label>
+              <select
+                id="category"
+                name="category"
+                defaultValue={formbooksData?.bookData?.category}
+                className="select select-bordered w-full"
+              >
+                <option value="Entertainment">Entertainment</option>
+                <option value="Computers">Computers</option>
+                <option value="Home & Garden">Home & Garden</option>
+                <option value="History">History</option>
+                <option value="Sports">Sports</option>
+                <option value="Medical">Medical</option>
+              </select>
+            </div>
+            <div>
+              <label htmlFor="rating" className="font-bold">
+                Rating
+              </label>
+              <input
+                type="number"
+                id="rating"
+                name="rating"
+                min="0"
+                max="5"
+                step="0.1"
+                defaultValue={formbooksData?.bookData?.rating}
+                placeholder="Enter rating (0-5)"
+                className="input input-bordered w-full"
+              />
+            </div>
+          </div>
+          <div className="modal-action">
+            <button type="submit" className="btn btn-primary">
+              Submit
+            </button>
+            <button
+              className="btn"
+              onClick={(e) => {
+                e.preventDefault(); // Prevent default form submission behavior
+                document.getElementById("my_modal_5").close();
+              }}
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      </dialog>
     </div>
   );
 };

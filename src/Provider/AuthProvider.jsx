@@ -62,53 +62,75 @@ const AuthProvider = ({ children }) => {
         setLoading(false);
       });
   };
-  // useEffect(() => {
-  //   const unsubscribe = onAuthStateChanged(
-  //     auth,
-  //     (currentUser) => {
-  //       setUser(currentUser);
-  //       setLoading(false);
-  //     },
-  //     (error) => {
-  //       console.error("Authentication error:", error);
-  //       setLoading(false);
-  //     }
-  //   );
-  //   return () => {
-  //     unsubscribe();
-  //   };
-  // }, []);
-
+  
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      const userEmail = currentUser?.email || user?.email;
-      const loggedUser = { email: userEmail };
-      setUser(currentUser);
-      console.log("current user", currentUser);
       setLoading(false);
-      //if the user exists then issue a token
+      setUser(currentUser);
+
       if (currentUser) {
+        const userEmail = currentUser.email;
+        const loggedUser = { email: userEmail };
+
         axios
-          .post("https://book-zone-server.vercel.app/jwt", loggedUser, {
+          .post('https://book-zone-server.vercel.app/jwt', loggedUser, {
             withCredentials: true,
           })
           .then((res) => {
-            console.log("token response", res.data);
+            console.log('token response', res.data);
+          })
+          .catch((err) => {
+            console.error('Error fetching JWT:', err);
           });
       } else {
         axios
-          .post("https://book-zone-server.vercel.app/logout", loggedUser, {
+          .post('https://book-zone-server.vercel.app/logout', null, {
             withCredentials: true,
           })
           .then((res) => {
-            console.log("logout user", res.data);
+            console.log('logout user', res.data);
+          })
+          .catch((err) => {
+            console.error('Error logging out:', err);
           });
       }
     });
+
     return () => {
-      return unsubscribe();
+      unsubscribe();
     };
-  });
+  }, []);
+
+  // useEffect(() => {
+  //   const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+  //     const userEmail = currentUser?.email || user?.email;
+  //     const loggedUser = { email: userEmail };
+  //     setUser(currentUser);
+  //     console.log("current user", currentUser);
+  //     setLoading(false);
+  //     //if the user exists then issue a token
+  //     if (currentUser) {
+  //       axios
+  //         .post("https://book-zone-server.vercel.app/jwt", loggedUser, {
+  //           withCredentials: true,
+  //         })
+  //         .then((res) => {
+  //           console.log("token response", res.data);
+  //         });
+  //     } else {
+  //       axios
+  //         .post("https://book-zone-server.vercel.app/logout", loggedUser, {
+  //           withCredentials: true,
+  //         })
+  //         .then((res) => {
+  //           console.log("logout user", res.data);
+  //         });
+  //     }
+  //   });
+  //   return () => {
+  //     return unsubscribe();
+  //   }
+  // },[]);
 
   const authInfo = {
     user,
