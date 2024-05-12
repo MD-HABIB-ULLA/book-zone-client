@@ -31,7 +31,7 @@ Done 12. Implement email and password-based authentication with registration and
 Done 13. Add at least one extra login method (e.g., Facebook, GitHub, Google)
 14. Display user name, profile picture, and logout button on the navbar after login
 15. Implement JWT token for CRUD operations in All Books and Add Book routes
-16. Implement Filter button to show available books only and dropdown menu for List View and Grid View options
+Done 16. Implement Filter button to show available books only and dropdown menu for List View and Grid View options
 17. Prevent borrowing a book twice for a single user
 Done 18. Implement dark/light theme toggle for the home page
 19. Deploy client-side and server-side applications on Firebase and Vercel respectively
