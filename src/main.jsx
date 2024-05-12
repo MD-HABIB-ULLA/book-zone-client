@@ -19,7 +19,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
-    errorElement:<ErrorPage/>,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
@@ -35,6 +35,8 @@ const router = createBrowserRouter([
       },
       {
         path: "/categorie/:category",
+        loader: ({ params }) =>
+          fetch(`http://localhost:4000/category/${params.category}`),
         element: <Category />,
       },
       {
