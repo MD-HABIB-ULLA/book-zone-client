@@ -3,12 +3,26 @@ import { LuMenu } from "react-icons/lu";
 import Button from "../Button/Button";
 import ThemeBtn from "../Theme/ThemeBtn";
 import logo from "../../assets/logo.png";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import toast from "react-hot-toast";
 
 const Navber = () => {
   const { user, signOutUser, loading } = useContext(AuthContext);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  const handleButtonHover = () => {
+    setIsDropdownOpen(true);
+  };
+
+  const handleDropdownHover = () => {
+    setIsDropdownOpen(true);
+  };
+
+  const handleDropdownLeave = () => {
+    setIsDropdownOpen(false);
+  };
+
 
   const handleLogout = () => {
   
@@ -123,11 +137,26 @@ const Navber = () => {
           </>
         ) : user?.email ? (
           <div className="flex items-center gap-4">
-            <div className=" avatar">
-              <div className=" w-10 rounded-full ring ring-[#9e24b2] dark:ring-[#9e24b2] ring-offset-white duration-500 ring-offset-2">
-                <img title={user.displayName} src={user.photoURL} alt="User Avatar" className="" />
+              <div className="relative avatar">
+                <div
+                  onMouseEnter={handleButtonHover}
+                  className=" w-10 rounded-full ring ring-[#9e24b2] dark:ring-[#9e24b2] ring-offset-white duration-500 ring-offset-2"
+                >
+                  <img src={user.photoURL} alt="User Avatar" className="" />
+                </div>
+                {isDropdownOpen && (
+                  <div
+                    className="absolute z-50 p-3 top-full right-0 mt-1 w-40 h-10  bg-[#181414cc] duration-500    rounded-md shadow-lg"
+                    onMouseEnter={handleDropdownHover}
+                    onMouseLeave={handleDropdownLeave}
+                  >
+                    <ul className= "  text-white font-bold duration-500 h-full ">
+                      <li>{user.displayName}</li>
+                     
+                    </ul>
+                  </div>
+                )}
               </div>
-            </div>
             <button
               
               className="btn border-none text-white font-bold bg-gradient-to-r from-[#9e24b2] to-[#4724b2] "

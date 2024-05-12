@@ -29,7 +29,7 @@ Done 7. Create an Add Book page with a form for users to add books, including im
 11. Implement detailed book route as a private/protected route
 Done 12. Implement email and password-based authentication with registration and login pages
 Done 13. Add at least one extra login method (e.g., Facebook, GitHub, Google)
-14. Display user name, profile picture, and logout button on the navbar after login
+Done 14. Display user name, profile picture, and logout button on the navbar after login
 15. Implement JWT token for CRUD operations in All Books and Add Book routes
 Done 16. Implement Filter button to show available books only and dropdown menu for List View and Grid View options
 17. Prevent borrowing a book twice for a single user
