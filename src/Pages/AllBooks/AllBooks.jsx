@@ -1,47 +1,22 @@
 import axios from "axios";
 import { TfiWrite } from "react-icons/tfi";
 import { FaRegStar, FaStar } from "react-icons/fa";
-import Button from "../../Components/Button/Button";
-import { useContext, useEffect, useState } from "react";
+
+import { useEffect, useState } from "react";
 import Rating from "react-rating";
 import { CiViewTable } from "react-icons/ci";
 import { CiCreditCard1 } from "react-icons/ci";
-import { AuthContext } from "../../Provider/AuthProvider";
+// import { AuthContext } from "../../Provider/AuthProvider";
 import { Link } from "react-router-dom";
 const AllBooks = () => {
   const [booksData, setBookData] = useState([]);
-  const [formbooksData, setFormBookData] = useState([]);
-  const [formbooksDataId, setFormBookDataId] = useState("");
-  const { loading } = useContext(AuthContext);
+
+  // const { loading } = useContext(AuthContext);
   const [loading1, setLoading] = useState(true);
   const [formet, setFormet] = useState("card");
   const [booksValue, setBooksValue] = useState("all");
 
   // console.log(formbooksData);
-
-  useEffect(() => {
-    fetch(`https://book-zone-server.vercel.app/books/${formbooksDataId}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setFormBookData(data);
-      });
-  }, [formbooksDataId]);
-  const handleFormData = (id) => {
-    console.log(id);
-    setFormBookDataId(id);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const authorName = form.authorName.value;
-    const bookName = form.bookName.value;
-    const bookImage = form.bookImage.value;
-    const category = form.category.value;
-    const rating = form.rating.value;
-    const data = { authorName, bookName, bookImage, category, rating };
-    console.log(data);
-  };
 
   // console.log(totalcount)
   const selectedOption = (e) => {
@@ -76,7 +51,7 @@ const AllBooks = () => {
         })
         .catch((err) => console.log(err));
     }
-  }, [booksValue, loading]);
+  }, [booksValue]);
 
   return (
     <div className="container m-auto ">
@@ -180,16 +155,13 @@ const AllBooks = () => {
                         readonly
                       />
                     </div>
-                    <button
+                    <Link
+                      to={`/update/${book._id}`}
                       className=" text-white font-bold border-none btn bg-gradient-to-r from-[#9e24b2] to-[#4724b2] uppercase"
-                      onClick={() => {
-                        handleFormData(book._id);
-                        document.getElementById("my_modal_5").showModal();
-                      }}
                     >
                       {" "}
                       Update
-                    </button>
+                    </Link>
                   </div>
                 </div>
               ))}
@@ -229,7 +201,7 @@ const AllBooks = () => {
                   {booksData.map((book, i) => (
                     <tr
                       key={i}
-                      className="hover:bg-gray-100 dark:hover:bg-gray-600 md:table-row md:flex md:flex-col md:items-center"
+                      className="hover:bg-gray-100 dark:hover:bg-gray-600 md:table-row  md:flex-col md:items-center"
                     >
                       <td className="py-2 whitespace-nowrap md:py-4 md:px-3">
                         <Link to={`/books/${book._id}`}>
@@ -265,13 +237,13 @@ const AllBooks = () => {
                         />
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap md:py-2 md:px-3">
-                        <Button
-                          onClick={(book) => {
-                            handleFormData(book),
-                              document.getElementById("my_modal_5").showModal();
-                          }}
-                          text={"Update"}
-                        />
+                        <Link
+                          to={`/update/${book._id}`}
+                          className=" text-white font-bold border-none btn bg-gradient-to-r from-[#9e24b2] to-[#4724b2] uppercase"
+                        >
+                          {" "}
+                          Update
+                        </Link>
                       </td>
                     </tr>
                   ))}
@@ -281,100 +253,6 @@ const AllBooks = () => {
           </>
         )}
       </div>
-      <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
-        <form className="modal-box" onSubmit={handleSubmit}>
-          <h3 className="font-bold text-lg">Update The Book</h3>
-          <div className="py-4 flex flex-col gap-4">
-            <div>
-              <label htmlFor="bookImage" className="font-bold mb-1">
-                Book Image
-              </label>
-              <input
-                type="text"
-                id="bookImage"
-                name="bookImage"
-                defaultValue={formbooksData?.bookData?.image}
-                placeholder="Enter book image URL"
-                className="input input-bordered w-full"
-              />
-            </div>
-            <div>
-              <label htmlFor="bookName" className="font-bold">
-                Book Name
-              </label>
-              <input
-                type="text"
-                id="bookName"
-                name="bookName"
-                defaultValue={formbooksData?.bookData?.name}
-                placeholder="Enter book name"
-                className="input input-bordered w-full"
-              />
-            </div>
-            <div>
-              <label htmlFor="authorName" className="font-bold">
-                Author Name
-              </label>
-              <input
-                type="text"
-                id="authorName"
-                name="authorName"
-                defaultValue={formbooksData?.bookData?.author}
-                placeholder="Enter author name"
-                className="input input-bordered w-full"
-              />
-            </div>
-            <div>
-              <label htmlFor="category" className="font-bold">
-                Category
-              </label>
-              <select
-                id="category"
-                name="category"
-                defaultValue={formbooksData?.bookData?.category}
-                className="select select-bordered w-full"
-              >
-                <option value="Entertainment">Entertainment</option>
-                <option value="Computers">Computers</option>
-                <option value="Home & Garden">Home & Garden</option>
-                <option value="History">History</option>
-                <option value="Sports">Sports</option>
-                <option value="Medical">Medical</option>
-              </select>
-            </div>
-            <div>
-              <label htmlFor="rating" className="font-bold">
-                Rating
-              </label>
-              <input
-                type="number"
-                id="rating"
-                name="rating"
-                min="0"
-                max="5"
-                step="0.1"
-                defaultValue={formbooksData?.bookData?.rating}
-                placeholder="Enter rating (0-5)"
-                className="input input-bordered w-full"
-              />
-            </div>
-          </div>
-          <div className="modal-action">
-            <button type="submit" className="btn btn-primary">
-              Submit
-            </button>
-            <button
-              className="btn"
-              onClick={(e) => {
-                e.preventDefault(); // Prevent default form submission behavior
-                document.getElementById("my_modal_5").close();
-              }}
-            >
-              Cancel
-            </button>
-          </div>
-        </form>
-      </dialog>
     </div>
   );
 };

@@ -15,6 +15,7 @@ import Home from "./Pages/Home/Home.jsx";
 import Category from "./Pages/Category/Category.jsx";
 import ErrorPage from "./Pages/ErrorPage/ErrorPage.jsx";
 import BookDetails from "./Pages/BookDetails/BookDetails.jsx";
+import UpdatePage from "./Pages/Update/UpdatePage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -79,6 +80,18 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <BookDetails />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/update/:id",
+        loader: ({ params }) =>
+          fetch(
+            `https://book-zone-server.vercel.app/books/${params.id}`
+          ),
+        element: (
+          <PrivateRoute>
+            <UpdatePage />
           </PrivateRoute>
         ),
       },
