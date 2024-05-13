@@ -1,31 +1,24 @@
 import { Typography } from "@mui/material";
-
 import img from "../../assets/addbooks.svg";
-import { useForm } from "react-hook-form";
 import { useLoaderData } from "react-router-dom";
 import Button from "../../Components/Button/Button";
-import { useEffect } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 // import Rating from "react-rating";
 
 const UpdatePage = () => {
-  const { register, handleSubmit, setValue } = useForm();
   const data = useLoaderData();
-
-  // Set the initial values for the form fields
-  useEffect(() => {
-    if (data) {
-      const { image, name, author, category, rating } = data.bookData;
-      setValue("image", image);
-      setValue("name", name);
-      setValue("author", author);
-      setValue("category", category);
-      setValue("rating", rating);
-    }
-  }, [data, setValue]);
-
-  const onSubmit = (formData) => {
+ console.log(data)
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const author = form.author.value;
+    const image = form.image.value;
+    const category = form.category.value;
+    const rating = parseFloat(form.rating.value);
+    const formData = { name, author, image, category, rating };
+    console.log(formData)
     axios
       .put(`https://book-zone-server.vercel.app/update/${data._id}`, formData)
       .then((res) => {
@@ -62,15 +55,15 @@ const UpdatePage = () => {
             <Typography variant="h4" gutterBottom>
               Upadate book
             </Typography>
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form onSubmit={(e) => handleSubmit(e)}>
               <div className="mb-4">
                 <label htmlFor="image" className="block font-bold mb-2">
                   Book Image
                 </label>
                 <input
-                  id="image"
+                  name="image"
                   type="text"
-                  {...register("image")}
+                  defaultValue={data.bookData.image}
                   className="w-full border border-gray-300 rounded-md px-3 py-2  text-black"
                 />
               </div>
@@ -79,9 +72,9 @@ const UpdatePage = () => {
                   Book Name
                 </label>
                 <input
-                  id="name"
+                  name="name"
                   type="text"
-                  {...register("name")}
+                  defaultValue={data.bookData.name}
                   className="w-full border border-gray-300 rounded-md px-3 py-2  text-black"
                 />
               </div>
@@ -90,9 +83,9 @@ const UpdatePage = () => {
                   Author Name
                 </label>
                 <input
-                  id="author"
+                  name="author"
+                  defaultValue={data.bookData.author}
                   type="text"
-                  {...register("author")}
                   className="w-full border border-gray-300 rounded-md px-3 py-2  text-black"
                 />
               </div>
@@ -101,8 +94,8 @@ const UpdatePage = () => {
                   Category
                 </label>
                 <select
-                  id="category"
-                  {...register("category")}
+                  name="category"
+                  defaultValue={data.bookData.category}
                   className="w-full border border-gray-300 rounded-md px-3 py-2  text-black"
                 >
                   <option value="Entertainment">Entertainment</option>
@@ -119,9 +112,9 @@ const UpdatePage = () => {
                   Rating
                 </label>
                 <input
-                  id="rating"
+                  name="rating"
+                  defaultValue={data.bookData.rating}
                   type="number"
-                  {...register("rating")}
                   min="0"
                   max="5"
                   step="0.1"

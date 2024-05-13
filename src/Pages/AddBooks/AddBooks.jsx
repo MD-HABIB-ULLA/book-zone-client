@@ -7,31 +7,30 @@ import {
   Typography,
 } from "@mui/material";
 import Button from "../../Components/Button/Button";
-import { useState } from "react";
+
 import img from "../../assets/addbooks.svg";
 import axios from "axios";
 import toast from "react-hot-toast";
 const AddBooks = () => {
-  const [bookData, setBookData] = useState({
-    image: "",
-    name: "",
-    quantity: "",
-    author: "",
-    category: "",
-    description: "",
-    rating: "",
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setBookData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
+    const form = e.target;
+    const image = form.image.value;
+    const name = form.name.value;
+    const quantity = parseInt(form.quantity.value);
+    const author = form.author.value;
+    const category = form.category.value;
+    const description = form.description.value;
+    const rating = form.rating.value;
+    const bookData = {
+      image,
+      name,
+      quantity,
+      author,
+      category,
+      description,
+      rating,
+    };
     axios
       .post(
         "https://book-zone-server.vercel.app/addbooks",
@@ -43,15 +42,7 @@ const AddBooks = () => {
       .then((res) => {
         if (res.data.acknowledged) {
           toast.success("Book added successfully");
-          setBookData({
-            image: "",
-            name: "",
-            quantity: "",
-            author: "",
-            category: "",
-            description: "",
-            rating: "",
-          });
+          e.target.reset();
         }
       })
       .catch((err) => console.log(err));
@@ -65,13 +56,12 @@ const AddBooks = () => {
             <Typography variant="h4" gutterBottom>
               Add Book
             </Typography>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={(e) => handleSubmit(e)}>
               <TextField
                 label="Image URL"
                 name="image"
                 required
-                value={bookData.image}
-                onChange={handleChange}
+             
                 fullWidth
                 margin="normal"
               />
@@ -79,8 +69,7 @@ const AddBooks = () => {
                 label="Name"
                 required
                 name="name"
-                value={bookData.name}
-                onChange={handleChange}
+                
                 fullWidth
                 margin="normal"
               />
@@ -89,8 +78,6 @@ const AddBooks = () => {
                 name="quantity"
                 required
                 type="number"
-                value={bookData.quantity}
-                onChange={handleChange}
                 fullWidth
                 margin="normal"
               />
@@ -98,19 +85,12 @@ const AddBooks = () => {
                 label="Author"
                 required
                 name="author"
-                value={bookData.author}
-                onChange={handleChange}
                 fullWidth
                 margin="normal"
               />
               <FormControl fullWidth margin="normal">
                 <InputLabel>Category</InputLabel>
-                <Select
-                  name="category"
-                  required
-                  value={bookData.category}
-                  onChange={handleChange}
-                >
+                <Select name="category" required>
                   <MenuItem value="Entertainment">Entertainment</MenuItem>
                   <MenuItem value="Computers">Computers</MenuItem>
                   <MenuItem value="Home & Garden">Home & Garden</MenuItem>
@@ -123,8 +103,6 @@ const AddBooks = () => {
                 label="Short Description"
                 required
                 name="description"
-                value={bookData.description}
-                onChange={handleChange}
                 fullWidth
                 margin="normal"
                 multiline
@@ -134,9 +112,7 @@ const AddBooks = () => {
                 label="Rating"
                 name="rating"
                 required
-                type="number"
-                value={bookData.rating}
-                onChange={handleChange}
+                type="text"
                 fullWidth
                 margin="normal"
               />
@@ -154,7 +130,7 @@ const AddBooks = () => {
                 </h1>
                 <p className="text-white text-xl mt-3 pl-5">
                   Ready to add a new book to our collection? Fill in the details
-                  below, and let's expand our library together! Your
+                  below, and lets expand our library together! Your
                   contribution is appreciated.
                 </p>
               </div>

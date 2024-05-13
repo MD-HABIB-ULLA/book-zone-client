@@ -1,10 +1,41 @@
-import { FaRegStar, FaStar } from 'react-icons/fa';
-import Rating from 'react-rating';
-import { useLoaderData } from 'react-router-dom';
+import { FaRegStar, FaStar } from "react-icons/fa";
+import Rating from "react-rating";
+import { useLoaderData } from "react-router-dom";
 
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../Provider/AuthProvider";
+import axios from "axios";
 const BookDetails = () => {
-  const book = useLoaderData()
-  console.log(book._id)
+  const { user } = useContext(AuthContext);
+  const today = new Date();
+  const day = String(today.getDate()).padStart(2, "0");
+  const month = String(today.getMonth() + 1).padStart(2, "0"); // January is 0!
+  const year = today.getFullYear();
+  console.log(user.email);
+  const [returnDate, setReturnDate] = useState(new Date());
+
+  const handleSubmit = (e, book) => {
+    e.preventDefault();
+   const {_id} = book
+    const form = e.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const returnDate = form.returnDate.value;
+    const todayDate = `${month}/${day}/${year}`;
+    const borrowingData = { name, email, returnDate, todayDate };
+    const incrementBookQuantity = _id
+    console.log(incrementBookQuantity)
+
+    axios
+      .post(`https://book-zone-server.vercel.app/updatequantity/${incrementBookQuantity}`, { incrementBookQuantity })
+      .then((res) => console.log(res.data))
+      .catch((err) => console.log(err));
+    console.log(borrowingData);
+  };
+  const book = useLoaderData();
+  
   return (
     <div className="flex flex-col md:flex-row justify-center items-center md:items-start md:space-x-8 p-8  dark:text-white">
       <div className="md:w-1/3">
@@ -40,9 +71,82 @@ const BookDetails = () => {
             readonly
           />
         </div>
-        <p className="dark:text-gray-400">
-        {book.bookData.description}
-        </p>
+        <p className="dark:text-gray-400">{book.bookData.description}</p>
+        <div className="mt-10">
+          <button
+            type="submit"
+            disabled={parseInt(book.bookData.quantity) === 0 ? true : false}
+            onClick={() => document.getElementById("my_modal_3").showModal()}
+            className={`${
+              parseInt(book.bookData.quantity) === 0
+                ? "bg-yellow-500 cursor-not-allowed !important"
+                : "bg-gradient-to-r from-[#9e24b2] to-[#4724b2]"
+            } text-white font-bold border-none btn uppercase`}
+          >
+            Borrow
+          </button>
+          <dialog id="my_modal_3" className="modal  dark:text-black">
+            <div className="modal-box dark:bg-gray-500 py-20">
+              <form method="dialog">
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    document.getElementById("my_modal_3").close();
+                  }}
+                  className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+                >
+                  ✕
+                </button>
+              </form>
+              <form
+                onSubmit={(e) => handleSubmit(e, book)}
+                className="flex flex-col gap-4"
+              >
+                <div className="flex flex-col">
+                  <label htmlFor="email" className="font-bold">
+                    Email:
+                  </label>
+                  <input
+                    type="text"
+                    name="email"
+                    defaultValue={user.email}
+                    readOnly
+                    className="border border-gray-300 px-3 py-2 rounded-md"
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <label htmlFor="name" className="font-bold">
+                    Name:
+                  </label>
+                  <input
+                    type="text"
+                    name="name"
+                    defaultValue={user.displayName}
+                    readOnly
+                    className="border border-gray-300 px-3 py-2 rounded-md"
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <label htmlFor="returnDate" className="font-bold">
+                    Return Date:
+                  </label>
+                  <DatePicker
+                    name="returnDate"
+                    selected={returnDate}
+                    onChange={setReturnDate}
+                    className="border border-gray-300 px-3 py-2 rounded-md"
+                  />
+                </div>
+                <button
+                  type="submit"
+                  className="bg-gradient-to-r from-purple-600 to-purple-800 text-white font-bold py-2 px-4 rounded-md hover:bg-gradient-to-r hover:from-purple-800 hover:to-purple-900"
+                >
+                  Submit
+                </button>
+              </form>
+            </div>
+          </dialog>
+          </div>
       </div>
     </div>
   );
