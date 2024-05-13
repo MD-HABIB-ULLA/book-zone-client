@@ -33,7 +33,7 @@ const BookDetails = () => {
     console.log(borrowingData);
 
     axios
-      .post("http://localhost:4000/addBorrowBook", borrowingData)
+      .post("https://book-zone-server.vercel.app/addBorrowBook", borrowingData)
       .then((res) => {
         if (res.data.acknowledged) {
           setQuantity(quantity - 1);
@@ -44,6 +44,7 @@ const BookDetails = () => {
             )
             .then((res) => {
               console.log(res.data);
+              toast.success(" This book added.");
               document.getElementById("my_modal_3").close();
             })
             .catch((err) => console.log(err));
