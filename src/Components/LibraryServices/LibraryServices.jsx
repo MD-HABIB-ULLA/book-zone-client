@@ -7,7 +7,7 @@ const LibraryServices = () => {
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 px-20 md:px-0">
           {/* Service 1: Borrowing Books */}
-          <div className="bg-white shadow-lg rounded-lg p-6 border-b-8 border-[#5c1d8e] duration-500  transform transition-transform hover:scale-105">
+          <div className="bg-white shadow-2xl shadow-[#5c1d8e]  rounded-lg p-6 border-b-8 border-[#5c1d8e] duration-500  transform transition-transform hover:scale-105">
             <h3 className="text-xl font-semibold text-gray-800 mb-4">
               Borrowing Books
             </h3>
@@ -18,7 +18,7 @@ const LibraryServices = () => {
           </div>
 
           {/* Service 2: Accessing Digital Resources */}
-          <div className="bg-white shadow-lg rounded-lg p-6 border-b-8 border-[#5c1d8e] duration-500  transform transition-transform hover:scale-105">
+          <div className="bg-white shadow-2xl shadow-[#5c1d8e] rounded-lg p-6 border-b-8 border-[#5c1d8e] duration-500  transform transition-transform hover:scale-105">
             <h3 className="text-xl font-semibold text-gray-800 mb-4">
               Accessing Digital Resources
             </h3>
@@ -29,7 +29,7 @@ const LibraryServices = () => {
           </div>
 
           {/* Service 3: Attending Workshops */}
-          <div className="bg-white shadow-lg rounded-lg p-6 border-b-8 border-[#5c1d8e] duration-500  transform transition-transform hover:scale-105">
+          <div className="bg-white shadow-2xl shadow-[#5c1d8e] rounded-lg p-6 border-b-8 border-[#5c1d8e] duration-500  transform transition-transform hover:scale-105">
             <h3 className="text-xl font-semibold text-gray-800 mb-4">
               Attending Workshops
             </h3>
@@ -40,7 +40,7 @@ const LibraryServices = () => {
           </div>
 
           {/* Service 4: Using Study Spaces */}
-          <div className="bg-white shadow-lg rounded-lg p-6 border-b-8 border-[#5c1d8e] duration-500  transform transition-transform hover:scale-105">
+          <div className="bg-white shadow-2xl shadow-[#5c1d8e] rounded-lg p-6 border-b-8 border-[#5c1d8e] duration-500  transform transition-transform hover:scale-105">
             <h3 className="text-xl font-semibold text-gray-800 mb-4">
               Using Study Spaces
             </h3>
