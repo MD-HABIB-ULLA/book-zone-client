@@ -1,9 +1,12 @@
-import {  Typography } from "@mui/material";
-import React from "react";
+import { Typography } from "@mui/material";
+
 import img from "../../assets/addbooks.svg";
 import { useForm } from "react-hook-form";
 import { useLoaderData } from "react-router-dom";
 import Button from "../../Components/Button/Button";
+import { useEffect } from "react";
+import axios from "axios";
+import toast from "react-hot-toast";
 // import Rating from "react-rating";
 
 const UpdatePage = () => {
@@ -11,7 +14,7 @@ const UpdatePage = () => {
   const data = useLoaderData();
 
   // Set the initial values for the form fields
-  React.useEffect(() => {
+  useEffect(() => {
     if (data) {
       const { image, name, author, category, rating } = data.bookData;
       setValue("image", image);
@@ -23,8 +26,14 @@ const UpdatePage = () => {
   }, [data, setValue]);
 
   const onSubmit = (formData) => {
-    // Handle form submission logic here
-    console.log(formData);
+    axios
+      .put(`https://book-zone-server.vercel.app/update/${data._id}`, formData)
+      .then((res) => {
+        if (res.data.acknowledged) {
+          toast.success("Update successful ");
+        }
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -120,12 +129,10 @@ const UpdatePage = () => {
                 />
               </div>
               <Button
-              text={"Update"}
+                text={"Update"}
                 type="submit"
                 className="w-full bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
-              >
-             
-              </Button>
+              ></Button>
             </form>
           </div>
         </div>
