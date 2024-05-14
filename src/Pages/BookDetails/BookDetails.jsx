@@ -33,18 +33,18 @@ const BookDetails = () => {
     console.log(borrowingData);
 
     axios
-      .post("https://book-zone-server.vercel.app/addBorrowBook", borrowingData)
+      .post("http://localhost:4000/addBorrowBook", borrowingData)
       .then((res) => {
         if (res.data.acknowledged) {
           setQuantity(quantity - 1);
           axios
             .post(
-              `https://book-zone-server.vercel.app/updatequantity/${incrementBookQuantity}`,
+              `http://localhost:4000/updatequantity/${incrementBookQuantity}`,
               { incrementBookQuantity }
             )
             .then((res) => {
               console.log(res.data);
-              toast.success(" This book added.");
+              toast.success(" This book added to the borrowed list.");
               document.getElementById("my_modal_3").close();
             })
             .catch((err) => console.log(err));
@@ -82,7 +82,7 @@ const BookDetails = () => {
           <span className="font-bold">Category:</span> {book.bookData.category}
         </p>
         <p className="mb-4 dark:text-gray-400">
-          <span className="font-bold">Quantity:</span> {book.bookData.quantity}
+          <span className="font-bold">Quantity:</span> {quantity}
         </p>
         <div className="mb-4">
           <span className="font-bold">Rating:</span>
