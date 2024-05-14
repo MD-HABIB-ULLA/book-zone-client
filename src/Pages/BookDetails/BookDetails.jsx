@@ -33,13 +33,13 @@ const BookDetails = () => {
     console.log(borrowingData);
 
     axios
-      .post("http://localhost:4000/addBorrowBook", borrowingData)
+      .post("https://bookzone-7c036.web.app/addBorrowBook", borrowingData)
       .then((res) => {
         if (res.data.acknowledged) {
           setQuantity(quantity - 1);
           axios
             .post(
-              `http://localhost:4000/updatequantity/${incrementBookQuantity}`,
+              `https://bookzone-7c036.web.app/updatequantity/${incrementBookQuantity}`,
               { incrementBookQuantity }
             )
             .then((res) => {
