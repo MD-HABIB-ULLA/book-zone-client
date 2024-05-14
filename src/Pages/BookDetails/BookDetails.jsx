@@ -33,13 +33,13 @@ const BookDetails = () => {
     console.log(borrowingData);
 
     axios
-      .post("https://bookzone-7c036.web.app/addBorrowBook", borrowingData)
+      .post("https://book-zone-server.vercel.app/addBorrowBook", borrowingData)
       .then((res) => {
         if (res.data.acknowledged) {
           setQuantity(quantity - 1);
           axios
             .post(
-              `https://bookzone-7c036.web.app/updatequantity/${incrementBookQuantity}`,
+              `https://book-zone-server.vercel.app/updatequantity/${incrementBookQuantity}`,
               { incrementBookQuantity }
             )
             .then((res) => {

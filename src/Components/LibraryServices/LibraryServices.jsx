@@ -5,7 +5,7 @@ const LibraryServices = () => {
         <h2 className="text-5xl font-semibold text-center dark:text-white text-gray-800 mb-40">
           Library Services
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 px-20 md:px-0">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:px-20 px-5 md:px-0">
           {/* Service 1: Borrowing Books */}
           <div className="bg-white shadow-2xl shadow-[#5c1d8e]  rounded-lg p-6 border-b-8 border-[#5c1d8e] duration-500  transform transition-transform hover:scale-105">
             <h3 className="text-xl font-semibold text-gray-800 mb-4">
