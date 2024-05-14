@@ -27,7 +27,7 @@ const SwiperBanner = () => {
           <SwiperSlide className=" w-full">
             <div className="h-full w-full">
               <div
-                className="  lg:bg-[length:400px_200px] bg-[length:600px_300px] hero bg-bottom w-full justify-start items-start md:items-center   h-full md:bg-contain bg-no-repeat md:bg-right"
+                className="   bg-[length:600px_300px] hero bg-bottom w-full justify-start items-start md:items-center   h-full md:bg-contain bg-no-repeat md:bg-right"
                 style={{
                   backgroundImage:
                     "url(https://i.ibb.co/98jnhLp/enhanced-166-removebg-preview.png)",
@@ -57,7 +57,7 @@ const SwiperBanner = () => {
           <SwiperSlide className=" w-full">
             <div className="h-full w-full">
               <div
-                className=" lg:bg-[length:400px_200px] bg-[length:600px_300px] md:bg-contain hero  w-full justify-start    h-full items-start md:items-center bg-no-repeat md:bg-right bg-bottom"
+                className="bg-[length:600px_300px] md:bg-contain hero  w-full justify-start    h-full items-start md:items-center bg-no-repeat md:bg-right bg-bottom"
                 style={{
                   backgroundImage:
                     "url(https://i.ibb.co/Br6V0Sc/book-white-background-isolated-books-157947-1799-removebg-preview.png)",
