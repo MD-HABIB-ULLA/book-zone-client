@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { LuMenu } from "react-icons/lu";
 import Button from "../Button/Button";
 import ThemeBtn from "../Theme/ThemeBtn";
@@ -7,10 +7,14 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import toast from "react-hot-toast";
 
+import { FaSearch } from "react-icons/fa";
+
 const Navber = () => {
   const { user, signOutUser, loading } = useContext(AuthContext);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
+  const location = useLocation();
+  console.log(location.pathname);
   const handleButtonHover = () => {
     setIsDropdownOpen(true);
   };
@@ -23,9 +27,7 @@ const Navber = () => {
     setIsDropdownOpen(false);
   };
 
-
   const handleLogout = () => {
-  
     signOutUser()
       .then(() => {
         toast.success("Sign-out successful");
@@ -129,6 +131,13 @@ const Navber = () => {
       </div>
 
       <div className="space-x-4 ">
+        {location.pathname === "/search" ? (
+          ""
+        ) : (
+          <Link to="/search">
+            <FaSearch className="dark:text-white text-xl border-[1px] border-white p-2 box-content rounded-full duration-500" />
+          </Link>
+        )}
         <ThemeBtn />
         {loading ? (
           <>
@@ -137,34 +146,31 @@ const Navber = () => {
           </>
         ) : user?.photoURL ? (
           <div className="flex items-center gap-4">
-              <div className="relative avatar">
-                <div
-                  onMouseEnter={handleButtonHover}
-                  className=" w-10 rounded-full ring ring-[#9e24b2] dark:ring-[#9e24b2] ring-offset-white duration-500 ring-offset-2"
-                >
-                  <img src={user.photoURL} alt="User Avatar" className="" />
-                </div>
-                {isDropdownOpen && (
-                  <div
-                    className="absolute z-50 p-3 top-full right-0 mt-1 w-40 h-10  bg-[#181414cc] duration-500    rounded-md shadow-lg"
-                    onMouseEnter={handleDropdownHover}
-                    onMouseLeave={handleDropdownLeave}
-                  >
-                    <ul className= "  text-white font-bold duration-500 h-full ">
-                      <li>{user.displayName}</li>
-                     
-                    </ul>
-                  </div>
-                )}
+            <div className="relative avatar">
+              <div
+                onMouseEnter={handleButtonHover}
+                className=" w-10 rounded-full ring ring-[#9e24b2] dark:ring-[#9e24b2] ring-offset-white duration-500 ring-offset-2"
+              >
+                <img src={user.photoURL} alt="User Avatar" className="" />
               </div>
-            <button
-              
-              className="btn border-none text-white font-bold bg-gradient-to-r from-[#9e24b2] to-[#4724b2] "
-              onClick={handleLogout}
-            >
-            
-              Logout
-            </button>
+              {isDropdownOpen && (
+                <div
+                  className="absolute z-50 p-3 top-full right-0 mt-1 w-40   bg-[#181414cc] duration-500    rounded-md shadow-lg"
+                  onMouseEnter={handleDropdownHover}
+                  onMouseLeave={handleDropdownLeave}
+                >
+                  <ul className="  text-white font-bold duration-500 h-full ">
+                    <li>{user.displayName}</li>
+                    <button
+                      className="btn border-none text-white font-bold bg-gradient-to-r from-[#9e24b2] to-[#4724b2] "
+                      onClick={handleLogout}
+                    >
+                      Logout
+                    </button>
+                  </ul>
+                </div>
+              )}
+            </div>
           </div>
         ) : (
           <>

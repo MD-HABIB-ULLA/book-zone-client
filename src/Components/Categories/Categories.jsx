@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const Categories = () => {
   const [categoriesOfEveryBooks, setCategoriesOfEveryBooks] = useState([]);
-
+ console.log(categoriesOfEveryBooks)
   useEffect(() => {
     axios
       .get("https://book-zone-server.vercel.app/categories")

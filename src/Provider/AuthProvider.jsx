@@ -62,7 +62,7 @@ const AuthProvider = ({ children }) => {
         setLoading(false);
       });
   };
-  
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setLoading(false);
@@ -73,25 +73,25 @@ const AuthProvider = ({ children }) => {
         const loggedUser = { email: userEmail };
 
         axios
-          .post('https://book-zone-server.vercel.app/jwt', loggedUser, {
+          .post("https://book-zone-server.vercel.app/jwt", loggedUser, {
             withCredentials: true,
           })
           .then((res) => {
-            console.log('token response', res.data);
+            console.log("token response", res.data);
           })
           .catch((err) => {
-            console.error('Error fetching JWT:', err);
+            console.error("Error fetching JWT:", err);
           });
       } else {
         axios
-          .post('https://book-zone-server.vercel.app/logout', null, {
+          .post("https://book-zone-server.vercel.app/logout", null, {
             withCredentials: true,
           })
           .then((res) => {
-            console.log('logout user', res.data);
+            console.log("logout user", res.data);
           })
           .catch((err) => {
-            console.error('Error logging out:', err);
+            console.error("Error logging out:", err);
           });
       }
     });
@@ -142,6 +142,7 @@ const AuthProvider = ({ children }) => {
     singInUserByGithub,
     loading,
     setLoading,
+  
   };
   return (
     <div>

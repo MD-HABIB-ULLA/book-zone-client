@@ -16,6 +16,8 @@ import Category from "./Pages/Category/Category.jsx";
 import ErrorPage from "./Pages/ErrorPage/ErrorPage.jsx";
 import BookDetails from "./Pages/BookDetails/BookDetails.jsx";
 import UpdatePage from "./Pages/Update/UpdatePage.jsx";
+// import SearchShow from "./Pages/SearchDataShow/SearchShow.jsx";
+import Search from "./Components/Search/Search.jsx";
 
 const router = createBrowserRouter([
   {
@@ -34,6 +36,10 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <SignUp />,
+      },
+      {
+        path: "/search",
+        element: <Search />,
       },
       {
         path: "/categorie/:category",
@@ -74,9 +80,7 @@ const router = createBrowserRouter([
       {
         path: "/books/:id",
         loader: ({ params }) =>
-          fetch(
-            `https://book-zone-server.vercel.app/books/${params.id}`
-          ),
+          fetch(`https://book-zone-server.vercel.app/books/${params.id}`),
         element: (
           <PrivateRoute>
             <BookDetails />
@@ -86,9 +90,7 @@ const router = createBrowserRouter([
       {
         path: "/update/:id",
         loader: ({ params }) =>
-          fetch(
-            `https://book-zone-server.vercel.app/books/${params.id}`
-          ),
+          fetch(`https://book-zone-server.vercel.app/books/${params.id}`),
         element: (
           <PrivateRoute>
             <UpdatePage />
