@@ -4,10 +4,6 @@
 
 [BookZone Live](https://bookzone-7c036.web.app/)
 
-## Category
-
-assignment_category_0008
-
 ## Description
 
 BookZone is an online platform where users can browse, borrow, and review books from a diverse collection organized by separate categories. It provides a convenient and user-friendly experience for book lovers to explore new reads and share their opinions.
