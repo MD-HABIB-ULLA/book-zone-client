@@ -38,11 +38,11 @@ const Navber = () => {
       });
   };
   const list = (
-    <div className=" flex lg:flex-row flex-col lg:gap-0 gap-5 md:dark:text-white dark:text-black">
+    <div className=" flex lg:flex-row flex-col lg:gap-0 gap-5  md:dark:text-white dark:text-black">
       <NavLink
         to="/"
         className={({ isActive }) =>
-          ` font-bold text-base  px-3 py-1 ${
+          ` font-bold text-sm  px-3 py-1 ${
             isActive
               ? "bg-gradient-to-r from-[#9e24b2] to-[#4724b2] text-white rounded-tr-xl rounded-bl-xl"
               : ""
@@ -54,7 +54,7 @@ const Navber = () => {
       <NavLink
         to="/addbook"
         className={({ isActive }) =>
-          ` font-bold text-base  px-3 py-1 ${
+          ` font-bold text-sm  px-3 py-1 ${
             isActive
               ? "bg-gradient-to-r from-[#9e24b2] to-[#4724b2] text-white rounded-tr-xl rounded-bl-xl"
               : ""
@@ -66,7 +66,7 @@ const Navber = () => {
       <NavLink
         to="/allbooks"
         className={({ isActive }) =>
-          ` font-bold text-base  px-3 py-1 ${
+          ` font-bold text-sm  px-3 py-1 ${
             isActive
               ? "bg-gradient-to-r from-[#9e24b2] to-[#4724b2] text-white rounded-tr-xl rounded-bl-xl"
               : ""
@@ -78,7 +78,7 @@ const Navber = () => {
       <NavLink
         to="/borrowedbooks"
         className={({ isActive }) =>
-          ` font-bold text-base  px-3 py-1 ${
+          ` font-bold text-sm  px-3 py-1 ${
             isActive
               ? "bg-gradient-to-r from-[#9e24b2] to-[#4724b2] text-white rounded-tr-xl rounded-bl-xl"
               : ""
@@ -90,7 +90,11 @@ const Navber = () => {
     </div>
   );
   return (
-    <div className=" navbar py-4 flex justify-between  container m-auto items-center md:px-0 px-4 ">
+    <div
+      className={`${
+        location.pathname !== "/" && "md:px-10 px-4"
+      }  navbar py-4 flex justify-between  max-w-7xl  m-auto items-center   `}
+    >
       <div className="flex justify-between items-center gap-3">
         <div className="flex items-center">
           <div className="dropdown">
@@ -131,13 +135,8 @@ const Navber = () => {
       </div>
 
       <div className="space-x-4 ">
-        {location.pathname === "/search" ? (
-          ""
-        ) : (
-          <Link to="/search">
-            <FaSearch className="dark:text-white text-xl border-[1px] border-white p-2 box-content rounded-full duration-500" />
-          </Link>
-        )}
+      
+
         <ThemeBtn />
         {loading ? (
           <>
@@ -174,14 +173,12 @@ const Navber = () => {
           </div>
         ) : (
           <>
-            {" "}
             <Link to="/login">
-              <Button
-                text="Login"
-                className={`${
-                  loading ? "" : "skeleton"
-                }skeleton btn border-none bg-gradient-to-r from-[#9e24b2] to-[#4724b2] `}
-              ></Button>
+              <button
+                className={` px-5 py-2 rounded-lg font-bold border-2  border-[#9e24b2] bg-white `}
+              >
+                Login
+              </button>
             </Link>
           </>
         )}

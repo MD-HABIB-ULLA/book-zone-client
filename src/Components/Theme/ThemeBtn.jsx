@@ -23,7 +23,7 @@ const ThemeBtn = () => {
   }, [theme]);
 
   return (
-    <button className="duration-500 text-3xl text-white  bg-gradient-to-r from-[#9e24b2] to-[#4724b2]   rounded-full p-1" onClick={toggleTheme}>
+    <button className="duration-500 text-3xl bg-white border-2 border-[#7224b2]  text-[#7224b2]   rounded-full p-1" onClick={toggleTheme}>
       {theme === "dark" ? <IoIosSunny /> : <IoMoon />}
     </button>
   );

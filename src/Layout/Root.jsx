@@ -4,6 +4,9 @@ import { LoaderIcon, Toaster } from "react-hot-toast";
 import Footer from "../Components/Footer/Footer";
 
 const Root = () => {
+
+
+
   const location = useLocation();
   console.log(location);
   return (
