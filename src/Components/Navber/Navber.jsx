@@ -148,7 +148,7 @@ const Navber = () => {
             <div className="relative avatar">
               <div
                 onMouseEnter={handleButtonHover}
-                className=" w-10 rounded-full ring ring-[#9e24b2] dark:ring-[#9e24b2] ring-offset-white duration-500 ring-offset-2"
+                className=" w-10 rounded-full ring-[2px] ring-[#9e24b2] dark:ring-[#9e24b2] ring-offset-white duration-500 ring-offset-2"
               >
                 <img src={user.photoURL} alt="User Avatar" className="" />
               </div>
