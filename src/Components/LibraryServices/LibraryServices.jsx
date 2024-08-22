@@ -27,7 +27,7 @@ const LibraryServices = () => {
             <h1 className="text-4xl dark:text-white md:text-left  text-center">
               <span className="text-[#7224b2]">Rent</span> your favorite book{" "}
               <br /> fairly easy on{" "}
-              <span className="text-[#7224b2]">Lidia!</span>
+              <span className="text-[#7224b2]">Book zone!</span>
             </h1>
             <p className="md:text-sm text-xs dark:text-white  text-gray-600">
               Viewing, rent, and organize your favorite books has never been
