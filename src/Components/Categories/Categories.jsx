@@ -1,71 +1,109 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
 AOS.init();
 
 const Categories = () => {
-  const [categoriesOfEveryBooks, setCategoriesOfEveryBooks] = useState([]);
-  console.log(categoriesOfEveryBooks);
-  useEffect(() => {
-    axios
-      .get("https://book-zone-server.vercel.app/categories")
-      .then((res) => setCategoriesOfEveryBooks(res.data))
-      .catch((err) => console.log(err));
-  }, []);
   return (
-    <div className="min-h-screen p-3">
+    <div className="max-w-7xl m-auto md:px-10 px-5 p-3">
       <div
         data-aos="fade-up"
         data-aos-duration="500"
         data-aos-easing="ease-in"
-
         data-aos-once="true"
-        
         className="  md:text-5xl text-center text-2xl container m-auto dark:text-white text-black duration-500 font-bold md:py-10 py-5 "
       >
         Our Books Categories
       </div>
-      <div className=" mt-4  grid grid-cols-2 w-full gap-5 ">
-        {categoriesOfEveryBooks.map((categorie, i) => (
-          <Link
-            to={`/categorie/${categorie.category}`}
-            key={i}
-            className="h-44 w-full md:px-20 px-5"
+
+      <div className="grid lg:grid-cols-3 grid-cols-2 md:gap-16 gap-10">
+        <Link to={"/categorie/Sports"} className=" cursor-pointer">
+          <div
+            style={{
+              backgroundImage: "url(https://i.ibb.co/1qvrwNj/ILGSN7j.jpg)",
+            }}
+            className="md:h-[400px] h-[300px] bg-cover bg-center rounded-[30px] hover:-translate-y-5   duration-500 relative hover:shadow-lg"
           >
-            <div className="h-full w-full overflow-hidden flex justify-between bg-white  rounded-lg border dark:border-white border-black relative">
-              <div className="h-full w-full absolute  hover:bg-[#2c2b2b67] duration-500   md:pl-10 pl-2  flex items-start md:pt-5 pt-2 text-white font-bold ">
-                <p className="text-sm bg-gradient-to-r from-[#9e24b2] to-[#4724b2] uppercase px-3 py-1 rounded-full">
-                  {categorie.category}
-                </p>
-              </div>
-              <div
-                className="bg-center bg-cover bg-no-repeat h-full w-1/3 rounded-l-lg"
-                style={{
-                  backgroundImage: `url(${categorie.images[2]})`,
-                }}
-              >
-                {" "}
-              </div>
-              <div
-                className="bg-center bg-cover bg-no-repeat h-full w-1/3 "
-                style={{
-                  backgroundImage: `url(${categorie.images[0]})`,
-                }}
-              ></div>
-              <div
-                className="bg-center bg-cover bg-no-repeat h-full w-1/3 rounded-r-lg"
-                style={{
-                  backgroundImage: `url(${categorie.images[1]})`,
-                }}
-              ></div>
+            <div className="h-full w-full bg-black/20 rounded-[30px]"></div>
+            <div className="md:text-3xl text-2xl uppercase text-white w-full text-center font-bold absolute top-7  ">
+              <p>sports</p>
             </div>
-          </Link>
-        ))}
+          </div>
+        </Link>
+        <Link to={"/categorie/Computers"} className=" cursor-pointer">
+          <div
+            style={{
+              backgroundImage: "url(https://i.ibb.co/S3VXKRP/3147196.jpg)",
+            }}
+            className="md:h-[400px] h-[300px] bg-cover bg-right rounded-[30px] hover:-translate-y-5   duration-500 relative hover:shadow-lg"
+          >
+            <div className="h-full w-full bg-black/20 rounded-[30px]"></div>
+            <div className="md:text-3xl text-2xl uppercase text-white w-full text-center font-bold absolute top-7  ">
+              <p>Science</p>
+            </div>
+          </div>
+        </Link>
+        <Link to={"/categorie/History"} className=" cursor-pointer">
+          <div
+            style={{
+              backgroundImage: "url(https://i.ibb.co/BTPRfpK/651717.jpg)",
+            }}
+            className="md:h-[400px] h-[300px] bg-cover bg-center rounded-[30px] hover:-translate-y-5   duration-500 relative hover:shadow-lg"
+          >
+            <div className="h-full w-full bg-black/20 rounded-[30px]"></div>
+            <div className="md:text-3xl text-2xl uppercase text-white w-full text-center font-bold absolute top-7  ">
+              <p>History</p>
+            </div>
+          </div>
+        </Link>
+        <Link to={"/categorie/Medical"} className=" cursor-pointer">
+          <div
+            style={{
+              backgroundImage: "url(https://i.ibb.co/F5jgJZS/wp2386748.webp)",
+            }}
+            className="md:h-[400px] h-[300px] bg-cover bg-center rounded-[30px] hover:-translate-y-5   duration-500 relative hover:shadow-lg"
+          >
+            <div className="h-full w-full bg-black/20 rounded-[30px]"></div>
+            <div className="md:text-3xl text-2xl uppercase text-white w-full text-center font-bold absolute top-7  ">
+              <p>Medical</p>
+            </div>
+          </div>
+        </Link>
+        <Link to={"/categorie/Home & Garden"} className="  cursor-pointer">
+          <div
+            style={{
+              backgroundImage:
+                "url(https://i.ibb.co/9tr9pNW/07-Immune-Surprising-Health-benefits-Gardening-459405181-monkeybusinessimages.jpg)",
+            }}
+            className="md:h-[400px] h-[300px] bg-cover bg-center rounded-[30px] hover:-translate-y-5   duration-500 relative shadow-lg"
+          >
+            <div className="h-full w-full bg-black/20 rounded-[30px]"></div>
+            <div className="md:text-3xl text-2xl uppercase text-white w-full text-center font-bold absolute top-7  ">
+              <p>Garden</p>
+            </div>
+          </div>
+        </Link>
+        <Link to={"/categorie/Entertainment"} className="  cursor-pointer">
+          <div
+            style={{
+              backgroundImage:
+                "url(https://i.ibb.co/GMkvTrS/Blue-and-White-Modern-Professional-Corporate-Education-Presentation-7-86211e28be.jpg)",
+            }}
+            className="md:h-[400px] h-[300px] bg-cover bg-center rounded-[30px] hover:-translate-y-5   duration-500 relative shadow-lg"
+          >
+            <div className="h-full w-full bg-black/20 rounded-[30px]"></div>
+            <div className="md:text-3xl text-2xl uppercase text-white w-full text-center font-bold absolute top-7  ">
+              <p>Entertainment</p>
+            </div>
+          </div>
+        </Link>
       </div>
     </div>
   );
 };
 
 export default Categories;
+
+// https://i.ibb.co/F5jgJZS/wp2386748.webp
+// https://i.ibb.co/9tr9pNW/07-Immune-Surprising-Health-benefits-Gardening-459405181-monkeybusinessimages.jpg
+// https://i.ibb.co/GMkvTrS/Blue-and-White-Modern-Professional-Corporate-Education-Presentation-7-86211e28be.jpg

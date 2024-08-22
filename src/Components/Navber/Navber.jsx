@@ -101,7 +101,7 @@ const Navber = () => {
             <div
               tabIndex={0}
               role="button"
-              className=" text-2xl  px-3 lg:hidden"
+              className=" text-2xl  px-3 lg:hidden dark:text-white"
             >
               <LuMenu />
             </div>
