@@ -11,9 +11,12 @@ const Categories = () => {
         data-aos-duration="500"
         data-aos-easing="ease-in"
         data-aos-once="true"
-        className="  md:text-5xl text-center text-2xl container m-auto dark:text-white text-black duration-500 font-bold md:py-10 py-5 "
+        className="  md:text-5xl text-center text-3xl container m-auto dark:text-white text-black duration-500 font-bold md:py-10 py-5 "
       >
-        Our Books Categories
+        Our Books{" "}
+        <span className="border-b-2 border-[#7224b2] text-[#7224b2]">
+          Categories
+        </span>
       </div>
 
       <div className="grid lg:grid-cols-3 grid-cols-2 md:gap-16 gap-10">
