@@ -124,7 +124,7 @@ const Navber = () => {
           </Link>
           <Link
             to="/"
-            className=" h-16 pb-2 text-xl mr-2 dark:block hidden  duration-500"
+            className=" h-16 pb-2 text-xl mr-2 dark:block hidden  duration-500 bg-gr"
           >
             <img src={logo} alt="" className="h-full w-full" />
           </Link>
