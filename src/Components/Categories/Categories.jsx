@@ -11,7 +11,7 @@ const Categories = () => {
         data-aos-duration="500"
         data-aos-easing="ease-in"
         data-aos-once="true"
-        className="  md:text-5xl text-center text-3xl container m-auto dark:text-white text-black duration-500 font-bold md:py-10 py-5 "
+        className="  md:text-5xl  text-center text-3xl container m-auto dark:text-white text-black duration-500 font-bold md:py-10  py-5 mb-10"
       >
         Our Books{" "}
         <span className="border-b-2 border-[#7224b2] text-[#7224b2]">

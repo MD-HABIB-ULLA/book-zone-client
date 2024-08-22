@@ -5,14 +5,17 @@ AOS.init();
 const Feature = () => {
   return (
     <div className="max-w-7xl m-auto md:px-10 px-5  my-16 ">
-      <div
+     <div
         data-aos="fade-up"
         data-aos-duration="500"
         data-aos-easing="ease-in"
         data-aos-once="true"
-        className="  md:text-5xl text-center text-3xl container m-auto dark:text-white text-black duration-500 font-bold py-5 "
+        className="  md:text-5xl capitalize  text-center text-3xl container m-auto dark:text-white text-black duration-500 font-bold md:py-10  py-5 mb-10"
       >
+        Our best{" "}
+        <span className="border-b-2 border-[#7224b2] text-[#7224b2]">
         Features
+        </span>
       </div>
       <div
         className="grid md:grid-cols-3 grid-cols-1 max-w-7xl m-auto md:px-10 px-5 gap5 dark:text-white
