@@ -11,13 +11,13 @@ const Home = () => {
   return (
     <div>
       <Banner />
-      {/* <SwiperBanner /> */}
       <Categories />
       <Feature />
       <LibraryServices />
 
+      <SwiperBanner />
       <Reviews />
-      <GetUpdate/>
+      <GetUpdate />
     </div>
   );
 };
