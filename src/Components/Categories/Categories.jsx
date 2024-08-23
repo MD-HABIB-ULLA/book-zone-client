@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import Card from "../Card/Card";
+
 AOS.init();
 
 const Categories = () => {
@@ -19,8 +21,88 @@ const Categories = () => {
         </span>
       </div>
 
-      <div className="grid lg:grid-cols-3 grid-cols-2 md:gap-16 gap-10">
+      <div className="grid md:grid-cols-3  grid-cols-1 gap-4">
+        <div className="">
+          <Link to={"/categorie/Computers"} className=" cursor-pointer">
+            <Card
+              height={"md:h-24 h-32"}
+              image={"https://i.ibb.co/S3VXKRP/3147196.jpg"}
+              Category={"Science"}
+            />
+          </Link>
+        </div>
+        <div>
+        <Link to={"/categorie/Medical"} className=" cursor-pointer">
+            <Card
+              height={"md:h-24 h-32"}
+              image={"https://i.ibb.co/F5jgJZS/wp2386748.webp"}
+              Category={"Medical"}
+            />
+          </Link>
+        </div>
+        <div className="row-span-2 h-full">
+        <Link to={"/categorie/Entertainment"} className="  cursor-pointer">
+            <Card
+              height={"md:h-52 h-32"}
+              image={
+                "https://i.ibb.co/GMkvTrS/Blue-and-White-Modern-Professional-Corporate-Education-Presentation-7-86211e28be.jpg"
+              }
+              Category={"Entertainment"}
+            />
+          </Link>
+        </div>
+        <div className="row-span-2">
+          <Link to={"/categorie/History"} className=" cursor-pointer">
+            <Card
+              height={"md:h-52 h-32"}
+              image={"https://i.ibb.co/BTPRfpK/651717.jpg"}
+              Category={"History"}
+            />
+          </Link>
+        </div>
+        <div>
         <Link to={"/categorie/Sports"} className=" cursor-pointer">
+            <Card
+              height={"md:h-24 h-32"}
+              image={"https://i.ibb.co/1qvrwNj/ILGSN7j.jpg"}
+              Category={"Sports"}
+            />
+          </Link>
+        </div>
+        <div>
+        <Link to={"/categorie/Home & Garden"} className="  cursor-pointer">
+            <Card
+              height={"md:h-24 h-32"}
+              image={
+                "https://i.ibb.co/9tr9pNW/07-Immune-Surprising-Health-benefits-Gardening-459405181-monkeybusinessimages.jpg"
+              }
+              Category={"garden"}
+            />
+          </Link>
+        </div>
+        <div>
+          <Link to={"/categorie/History"} className=" cursor-pointer">
+            <Card
+              height={"md:h-24 h-32"}
+              image={
+                "https://i.ibb.co/QCnhtD2/pngtree-fairy-world-scene-in-tale-picture-image-2422015.png"
+              }
+              Category={"Story"}
+            />
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Categories;
+
+// https://i.ibb.co/F5jgJZS/wp2386748.webp
+// https://i.ibb.co/9tr9pNW/07-Immune-Surprising-Health-benefits-Gardening-459405181-monkeybusinessimages.jpg
+// https://i.ibb.co/GMkvTrS/Blue-and-White-Modern-Professional-Corporate-Education-Presentation-7-86211e28be.jpg
+{
+  /* <Link to={"/categorie/Sports"} className=" cursor-pointer">
           <div
             style={{
               backgroundImage: "url(https://i.ibb.co/1qvrwNj/ILGSN7j.jpg)",
@@ -99,14 +181,5 @@ const Categories = () => {
               <p>Entertainment</p>
             </div>
           </div>
-        </Link>
-      </div>
-    </div>
-  );
-};
-
-export default Categories;
-
-// https://i.ibb.co/F5jgJZS/wp2386748.webp
-// https://i.ibb.co/9tr9pNW/07-Immune-Surprising-Health-benefits-Gardening-459405181-monkeybusinessimages.jpg
-// https://i.ibb.co/GMkvTrS/Blue-and-White-Modern-Professional-Corporate-Education-Presentation-7-86211e28be.jpg
+        </Link> */
+}
