@@ -42,31 +42,55 @@ const BorrowedBooks = () => {
   };
 
   return (
-    <div className="flex flex-wrap flex-col items-center mt-20 min-h-screen">
-      {bookData.map((book) => (
-        <div
-          key={book._id}
-          className="w-[500px] items-center mx-2 mb-4 bg-white shadow-md rounded-lg overflow-hidden flex flex-row"
-        >
-          <img
-            src={book.book.bookData.image}
-            alt={book.book.bookData.name}
-            className=" h-48 w-36"
-          />
-          <div className="p-4 flex-1">
-            <p className="text-xl font-semibold">{book.book.bookData.name}</p>
-            <p className="text-gray-600">{book.book.bookData.category}</p>
-            <p className="text-gray-600">Borrowed Date: {book.todayDate}</p>
-            <p className="text-gray-600">Return Date: {book.returnDate}</p>
-            <button
-              onClick={() => handleReturnBook(book)}
-              className="mt-2  text-white font-bold border-none btn bg-gradient-to-r from-[#9e24b2] to-[#4724b2] uppercase"
-            >
-              Return
-            </button>
+    <div className="min-h-screen max-w-7xl md:px-10 px-5">
+      {!bookData ? (
+        <div>
+          <div className="text-5xl font-bold text-center py-5">
+            <h1>Borrowed Books</h1>
+          </div>
+
+          <div className="grid md:grid-cols-2 grid-cols-1 gap-5">
+            {bookData?.map((book) => (
+              <div
+                key={book._id}
+                className="items-center mx-2 p-3 mb-4 bg-white shadow-md rounded-lg overflow-hidden flex flex-row"
+              >
+                <div className="w-32 h-full">
+                  <img
+                    src={book.book.bookData.image}
+                    alt={book.book.bookData.name}
+                    className="w-full h-full rounded-md object-cover object-center"
+                  />
+                </div>
+
+                <div className="p-4 flex-1">
+                  <p className="text-xl font-semibold">
+                    {book.book.bookData.name}
+                  </p>
+                  <p className="text-gray-600">{book.book.bookData.category}</p>
+                  <p className="text-gray-600">
+                    Borrowed Date: {book.todayDate}
+                  </p>
+                  <p className="text-yellow-400 font-bold">
+                    Return Date: {book.returnDate}
+                  </p>
+                  <button
+                    onClick={() => handleReturnBook(book)}
+                    className="mt-2  text-white font-bold border-none btn bg-gradient-to-r from-[#9e24b2] to-[#4724b2] uppercase"
+                  >
+                    Return
+                  </button>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
-      ))}
+      ) : (
+        <div className="lg:text-5xl md:text-3xl text-xl text-center  h-full mt-2 my-auto text-[#7224b2]">
+         
+          Please borrow a book first
+        </div>
+      )}
     </div>
   );
 };

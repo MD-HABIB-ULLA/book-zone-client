@@ -14,42 +14,37 @@ const Category = () => {
   // const [booksData, setBookData] = useState([]);
   console.log(useLoaderData());
   return (
-    <div className="min-h-screen px-10">
-      <div className="text-center text-3xl font-bold dark:text-white py-10">
+    <div className="max-w-7xl m-auto  md:px-10 px-5">
+      <div className="text-center text-5xl font-bold text-[#7224b2] py-10">
         {booksData[1]?.bookData.category}
       </div>
       <div
-        className={`grid lg:grid-cols-3 md:grid-cols-2 gap-5 grid-cols-1 container m-auto`}
+        className={`grid lg:grid-cols-4 md:grid-cols-3 gap-5 grid-cols-2 container m-auto`}
       >
         {booksData.map((book, i) => (
-          <div
+          <Link
+            to={`/books/${book._id}`}
             key={i}
-            className="flex flex-col items-center bg-white border duration-500 border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 "
+            className=" flex gap-2 flex-col justify-between bg-[#7224b2]/10  items-center p-4 hover:border-[#7224b2] hover:translate-y-1 border    duration-500 border-gray-200 rounded-lg shadow  md:max-w-xl     "
           >
-            <div className="p-1 rounded-lg">
+            <div className="h-full cursor-pointer">
+              {" "}
               <img
-                className=" rounded-t-lg  h-48"
+                className="object-cover  rounded-t-lg w-28 h-40 md:rounded-none md:rounded-l-lg"
                 src={book.bookData.image}
                 alt=""
+                style={{ aspectRatio: "9/10" }} // Set the desired aspect ratio here
               />
             </div>
-            <div className="flex flex-col justify-between p-4 leading-normal h-full w-full">
-              <h5 className="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white">
+            <div className="flex flex-col flex-1 justify-between  leading-normal h-full w-full ">
+              <h5 className="mb-2 md:text-xl text-base font-bold text-center tracking-tight text-gray-900 dark:text-white">
                 {book.bookData.name}
               </h5>
-              <div className="mb-3 font-normal text-gray-700 dark:text-gray-400 h-full">
-                <div className="flex items-center gap-2">
-                  <TfiWrite className="text-xl dark:text-white text-black font-bold" />{" "}
+              <div className="mb-3 text-center font-normal text-gray-700 dark:text-gray-400  h-full">
+                <div className=" md:text-sm text-xs  ">
                   {book.bookData.author}
                 </div>
-                <div className="flex items-center gap-2">
-                  <p className="font-bold">Category :</p>{" "}
-                  {book.bookData.category}
-                </div>
-                <div className="flex items-center gap-2">
-                  <p className="font-bold">Quantity :</p>{" "}
-                  {book.bookData.quantity}
-                </div>
+
                 <Rating
                   emptySymbol={<FaRegStar className="text-yellow-500 mr-1" />}
                   fullSymbol={<FaStar className="text-yellow-500 mr-1" />}
@@ -57,12 +52,15 @@ const Category = () => {
                   readonly
                 />
               </div>
-              <Link to={`/books/${book._id}`}>
-                {" "}
-                <Button text={"See Details"} />
-              </Link>
+              {/* <Link
+              to={`/update/${book._id}`}
+              className=" text-white font-bold border-none btn bg-gradient-to-r from-[#9e24b2] to-[#4724b2] uppercase"
+            >
+              {" "}
+              Update
+            </Link> */}
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>

@@ -51,18 +51,7 @@ const Navber = () => {
       >
         Home
       </NavLink>
-      <NavLink
-        to="/addbook"
-        className={({ isActive }) =>
-          ` font-bold text-sm  px-3 py-1 ${
-            isActive
-              ? "bg-gradient-to-r from-[#9e24b2] to-[#4724b2] text-white rounded-tr-xl rounded-bl-xl"
-              : ""
-          } `
-        }
-      >
-        Add Book
-      </NavLink>
+
       <NavLink
         to="/allbooks"
         className={({ isActive }) =>
@@ -74,6 +63,18 @@ const Navber = () => {
         }
       >
         All Books
+      </NavLink>
+      <NavLink
+        to="/aboutUs"
+        className={({ isActive }) =>
+          ` font-bold text-sm  px-3 py-1 ${
+            isActive
+              ? "bg-gradient-to-r from-[#9e24b2] to-[#4724b2] text-white rounded-tr-xl rounded-bl-xl"
+              : ""
+          } `
+        }
+      >
+        About us
       </NavLink>
       <NavLink
         to="/borrowedbooks"
@@ -135,8 +136,6 @@ const Navber = () => {
       </div>
 
       <div className="space-x-4 ">
-      
-
         <ThemeBtn />
         {loading ? (
           <>

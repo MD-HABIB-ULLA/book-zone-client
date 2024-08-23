@@ -54,18 +54,18 @@ const AllBooks = () => {
   }, [booksValue]);
 
   return (
-    <div className="container m-auto ">
-      <div className="min-h-screen px-4">
+    <div className="max-w-7xl md:px-10 px-5 m-auto ">
+      <div className="min-h-screen ">
         {/* filter button  */}
 
-        <div className="bg-[#2c292952] flex justify-between dark:bg-[#afa9a952] rounded-lg px-6 py-5 mb-10">
+        <div className="bg-[#7224b2]/5 flex justify-between dark:bg-[#afa9a952]/15 rounded-lg px-6 py-5 mb-10">
           <div className="flex items-center dark:text-white text-black font-bold">
             {" "}
             Showing {booksData.length} result
           </div>
           <div className="relative inline-block mx-4">
             <select
-              className="bg-gray-200 text-gray-700 py-2 px-4 pr-8 rounded-full appearance-none focus:outline-none focus:bg-white focus:border-purple-500"
+              className="md:w-72 text-gray-700 py-2 px-4 pr-8 rounded-full appearance-none focus:outline-none focus:bg-white focus:border-purple-500"
               // value={selectedOption}
               defaultValue={"all"}
               onChange={(e) => selectedOption(e)}
@@ -108,44 +108,34 @@ const AllBooks = () => {
         ) : (
           <>
             <div
-              className={`grid lg:grid-cols-2 grid-cols-1 p-1 gap-5 ${
+              className={`grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 p-1 gap-3 ${
                 formet === "card" ? "block" : " hidden"
               }`}
             >
               {booksData.map((book, i) => (
-                <div
+                <Link
+                  to={`/books/${book._id}`}
                   key={i}
-                  className=" flex  items-center   bg-white border duration-500 border-gray-200 rounded-lg shadow flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 h-64 dark:hover:bg-gray-700"
+                  className=" flex gap-2 flex-col justify-between bg-[#7224b2]/10  items-center p-4 hover:border-[#7224b2] hover:translate-y-1 border    duration-500 border-gray-200 rounded-lg shadow  md:max-w-xl     "
                 >
-                  <Link
-                    className="h-full cursor-pointer"
-                    to={`/books/${book._id}`}
-                  >
+                  <div className="h-full cursor-pointer">
                     {" "}
                     <img
-                      className="object-cover h-full rounded-t-lg w-40 md:w-52 md:rounded-none md:rounded-l-lg"
+                      className="object-cover  rounded-t-lg w-28 h-40 md:rounded-none md:rounded-l-lg"
                       src={book.bookData.image}
                       alt=""
                       style={{ aspectRatio: "9/10" }} // Set the desired aspect ratio here
                     />
-                  </Link>
-                  <div className="flex flex-col justify-between p-4 leading-normal h-full w-full ">
-                    <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">
+                  </div>
+                  <div className="flex flex-col flex-1 justify-between  leading-normal h-full w-full ">
+                    <h5 className="mb-2 md:text-xl text-base font-bold text-center tracking-tight text-gray-900 dark:text-white">
                       {book.bookData.name}
                     </h5>
-                    <div className="mb-3 font-normal text-gray-700 dark:text-gray-400  h-full">
-                      <div className="flex items-center gap-4">
-                        <TfiWrite className="text-xl dark:text-white text-black font-bold" />{" "}
+                    <div className="mb-3 text-center font-normal text-gray-700 dark:text-gray-400  h-full">
+                      <div className=" md:text-sm text-xs  ">
                         {book.bookData.author}
                       </div>
-                      <div className="flex items-center gap-4">
-                        <p className="font-bold">Category :</p>
-                        {book.bookData.category}
-                      </div>
-                      <div className="flex items-center gap-4">
-                        <p className="font-bold">Quantity :</p>
-                        {book.bookData.quantity}
-                      </div>
+
                       <Rating
                         emptySymbol={
                           <FaRegStar className="text-yellow-500 mr-1" />
@@ -155,104 +145,24 @@ const AllBooks = () => {
                         readonly
                       />
                     </div>
-                    <Link
+                    {/* <Link
                       to={`/update/${book._id}`}
                       className=" text-white font-bold border-none btn bg-gradient-to-r from-[#9e24b2] to-[#4724b2] uppercase"
                     >
                       {" "}
                       Update
-                    </Link>
+                    </Link> */}
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
 
             {/*  table data  */}
-            <div
-              className={`overflow-x-auto ${
-                formet === "table" ? "block" : " hidden"
-              }`}
-            >
-              <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-                <thead className="bg-gray-50 dark:bg-gray-800">
-                  <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider md:px-3">
-                      Image
-                    </th>
-                    <th className="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider md:px-2">
-                      Name
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider md:px-3">
-                      Author
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider md:px-3">
-                      Category
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider md:px-3">
-                      Quantity
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider md:px-3">
-                      Rating
-                    </th>
-                    <th className="px-6 py-3 md:px-3"></th>
-                  </tr>
-                </thead>
-                <tbody className="bg-white divide-y-8 dark:divide-[#212121] dark:bg-gray-700">
-                  {booksData.map((book, i) => (
-                    <tr
-                      key={i}
-                      className="hover:bg-gray-100 dark:hover:bg-gray-600 md:table-row  md:flex-col md:items-center"
-                    >
-                      <td className="py-2 whitespace-nowrap md:py-4 md:px-3">
-                        <Link to={`/books/${book._id}`}>
-                          <img
-                            className="w-36 h-24 object-cover rounded-lg md:w-full md:h-auto"
-                            src={book.bookData.image}
-                            alt=""
-                          />
-                        </Link>
-                      </td>
-                      <td className="px-3 py-4 whitespace-nowrap md:py-2 md:px-3">
-                        {book.bookData.name}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap md:py-2 md:px-3">
-                        {book.bookData.author}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap md:py-2 md:px-3">
-                        {book.bookData.category}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap md:py-2 md:px-3">
-                        {book.bookData.quantity}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap md:py-2 md:px-3">
-                        <Rating
-                          emptySymbol={
-                            <FaRegStar className="text-yellow-500 mr-1" />
-                          }
-                          fullSymbol={
-                            <FaStar className="text-yellow-500 mr-1" />
-                          }
-                          initialRating={book.bookData.rating}
-                          readonly
-                        />
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap md:py-2 md:px-3">
-                        <Link
-                          to={`/update/${book._id}`}
-                          className=" text-white font-bold border-none btn bg-gradient-to-r from-[#9e24b2] to-[#4724b2] uppercase"
-                        >
-                          {" "}
-                          Update
-                        </Link>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
           </>
         )}
       </div>
+
+      <div></div>
     </div>
   );
 };
