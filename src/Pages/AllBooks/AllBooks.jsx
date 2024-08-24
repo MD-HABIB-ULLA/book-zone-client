@@ -54,7 +54,6 @@ const AllBooks = () => {
           <div className="relative inline-block mx-4">
             <select
               className="md:w-72 text-gray-700 py-2 px-4 pr-8 rounded-full appearance-none focus:outline-none focus:bg-white focus:border-purple-500"
-              // value={selectedOption}
               defaultValue={"all"}
               onChange={(e) => selectedOption(e)}
             >
