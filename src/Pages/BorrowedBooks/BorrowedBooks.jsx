@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 import UseAxiosPublic from "../../Hooks/UseAxiosPublic";
 
 const BorrowedBooks = () => {
-  const axiosPublic = UseAxiosPublic()
+  const axiosPublic = UseAxiosPublic();
   const [bookData, setBookData] = useState([]);
   const { user } = useContext(AuthContext);
   const { email } = user;
@@ -16,21 +16,19 @@ const BorrowedBooks = () => {
       .get(`/borrowedBooks/${email}`)
       .then((res) => setBookData(res.data))
       .catch((err) => console.log(err));
-  }, [email]);
+  }, [axiosPublic, email]);
 
   const handleReturnBook = (book) => {
     const bookId = book._id;
     const updataId = book.book._id;
     console.log(updataId);
     const returnBook = bookData.filter((book) => book._id !== bookId);
-    axios
+    axiosPublic
       .delete(`/returnBook/${bookId}`)
       .then((res) => {
         if (res.data.deletedCount === 1) {
-          axios
-            .post(
-              `/returnBookQuantity/${updataId}`
-            )
+          axiosPublic
+            .post(`/returnBookQuantity/${updataId}`)
             .then((res) => {
               if (res.data.acknowledged) {
                 setBookData(returnBook);
@@ -55,7 +53,7 @@ const BorrowedBooks = () => {
             {bookData?.map((book) => (
               <div
                 key={book._id}
-                className="items-center mx-2 p-3 mb-4 bg-white shadow-md rounded-lg overflow-hidden flex flex-row"
+                className="items-center md:h-auto h-44 mx-2 p-3 mb-4 bg-white shadow-md rounded-lg overflow-hidden flex flex-row"
               >
                 <div className="w-32 h-full">
                   <img
@@ -66,14 +64,14 @@ const BorrowedBooks = () => {
                 </div>
 
                 <div className="p-4 flex-1">
-                  <p className="text-xl font-semibold">
+                  <p className="lg:text-xl md:text-base text-sm font-semibold">
                     {book.book.bookData.name}
                   </p>
-                  <p className="text-gray-600">{book.book.bookData.category}</p>
-                  <p className="text-gray-600">
+                  <p className="text-gray-600 lg:text-base text-xs">{book.book.bookData.category}</p>
+                  <p className="text-gray-600 lg:text-base text-xs">
                     Borrowed Date: {book.todayDate}
                   </p>
-                  <p className="text-yellow-400 font-bold">
+                  <p className="text-yellow-400 font-bold lg:text-base text-xs">
                     Return Date: {book.returnDate}
                   </p>
                   <button
@@ -89,7 +87,6 @@ const BorrowedBooks = () => {
         </div>
       ) : (
         <div className="lg:text-5xl md:text-3xl text-xl text-center  h-full mt-2 my-auto text-[#7224b2]">
-         
           Please borrow a book first
         </div>
       )}
