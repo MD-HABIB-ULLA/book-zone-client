@@ -1,6 +1,5 @@
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { LuMenu } from "react-icons/lu";
-import Button from "../Button/Button";
 import ThemeBtn from "../Theme/ThemeBtn";
 import logo from "../../assets/logo.png";
 import { useContext, useState } from "react";
