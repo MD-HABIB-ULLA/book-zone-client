@@ -13,10 +13,8 @@ const AllBooks = () => {
   const [formet, setFormet] = useState("card");
   const [booksValue, setBooksValue] = useState("all");
 
-
   const selectedOption = (e) => {
     setBooksValue(e.target.value);
-  
   };
   console.log(booksValue);
   useEffect(() => {
@@ -41,7 +39,7 @@ const AllBooks = () => {
         })
         .catch((err) => console.log(err));
     }
-  }, [booksValue]);
+  }, [booksValue, axiosPublic]);
 
   return (
     <div className="max-w-7xl md:px-10 px-5 m-auto ">
