@@ -16,11 +16,7 @@ const AllBooks = () => {
 
   const selectedOption = (e) => {
     setBooksValue(e.target.value);
-    // if (e.target.value === "all") {
-    //   console.log(booksValue);
-    // } else {
-    //   console.log(booksValue);
-    // }
+  
   };
   console.log(booksValue);
   useEffect(() => {
