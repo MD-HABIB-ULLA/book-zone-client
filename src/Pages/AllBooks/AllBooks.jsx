@@ -1,4 +1,3 @@
-import { TfiWrite } from "react-icons/tfi";
 import { FaRegStar, FaStar } from "react-icons/fa";
 
 import { useEffect, useState } from "react";
