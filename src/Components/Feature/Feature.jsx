@@ -87,6 +87,4 @@ const Feature = () => {
 };
 
 export default Feature;
-// https://i.ibb.co/fY3LnzW/Group-3-removebg-preview.png
-// https://i.ibb.co/qJ3GWZd/Group-4-removebg-preview.png
-// https://i.ibb.co/h1W2QS2/Group-5-removebg-preview.png
+
