@@ -42,7 +42,7 @@ const Category = () => {
                 className="object-cover  rounded-t-lg w-28 h-40 md:rounded-none md:rounded-l-lg"
                 src={book.bookData.image}
                 alt=""
-                style={{ aspectRatio: "9/10" }} // Set the desired aspect ratio here
+                style={{ aspectRatio: "9/10" }} 
               />
             </div>
             <div className="flex flex-col flex-1 justify-between  leading-normal h-full w-full ">
