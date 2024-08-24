@@ -15,7 +15,7 @@ const ErrorPage = () => {
           <div>
             <h1 className="text-5xl font-bold">Page Not Found</h1>
             <p className="py-6">
-            Sorry, we couldn't find the requested page. Please double-check the URL or try again later. If the issue persists, feel free to contact us for assistance.
+            Sorry, we could not find the requested page. Please double-check the URL or try again later. If the issue persists, feel free to contact us for assistance.
             </p>
             <Link className=" "><Button text={'Back To Home'}></Button></Link>
           </div>
