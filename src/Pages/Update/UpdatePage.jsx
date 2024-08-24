@@ -2,7 +2,6 @@ import { Typography } from "@mui/material";
 import img from "../../assets/addbooks.svg";
 import { useParams } from "react-router-dom";
 import Button from "../../Components/Button/Button";
-import axios from "axios";
 import toast from "react-hot-toast";
 import UseAxiosPublic from "../../Hooks/UseAxiosPublic";
 import { useEffect, useState } from "react";
