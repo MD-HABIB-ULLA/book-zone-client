@@ -10,7 +10,6 @@ const AllBooks = () => {
   const axiosPublic = UseAxiosPublic();
 
   const [loading1, setLoading] = useState(true);
-  const [formet, setFormet] = useState("card");
   const [booksValue, setBooksValue] = useState("all");
 
   const selectedOption = (e) => {
