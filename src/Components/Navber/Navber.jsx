@@ -6,7 +6,6 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import toast from "react-hot-toast";
 
-import { FaSearch } from "react-icons/fa";
 
 const Navber = () => {
   const { user, signOutUser, loading } = useContext(AuthContext);
