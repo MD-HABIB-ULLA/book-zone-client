@@ -2,17 +2,34 @@
 import { FaRegStar, FaStar } from "react-icons/fa";
 import { TfiWrite } from "react-icons/tfi";
 import Rating from "react-rating";
-import { Link, useLoaderData } from "react-router-dom";
+import { Link, useLoaderData, useParams } from "react-router-dom";
 import Button from "../../Components/Button/Button";
+import { useEffect, useState } from "react";
+import UseAxiosPublic from "../../Hooks/UseAxiosPublic";
+import axios from "axios";
 // import { useEffect, useState } from "react";
 
 const Category = () => {
-  const booksData = useLoaderData();
+  const axiosPublic = UseAxiosPublic();
+  const { category } = useParams();
+  const [booksData, setBook] = useState([]);
+
+  useEffect(() => {
+    axiosPublic
+      .get(`/category/${category}`)
+      .then((response) => {
+        setBook(response.data);
+      })
+      .catch((error) => {
+        console.error("There was an error fetching the book data!", error);
+      });
+  }, [axiosPublic, category]);
+  console.log(booksData, category)
+
   // useEffect(() => {
   //   setBookData(categoryBasedBooks);
   // }, [categoryBasedBooks]);
   // const [booksData, setBookData] = useState([]);
-  console.log(useLoaderData());
   return (
     <div className="max-w-7xl m-auto  md:px-10 px-5">
       <div className="text-center text-5xl font-bold text-[#7224b2] py-10">

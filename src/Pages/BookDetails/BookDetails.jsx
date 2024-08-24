@@ -50,7 +50,7 @@ const BookDetails = () => {
       .then((res) => {
         if (res.data.acknowledged) {
           setQuantity(quantity - 1);
-          axios
+          axiosPublic
             .post(`/updatequantity/${incrementBookQuantity}`, {
               incrementBookQuantity,
             })

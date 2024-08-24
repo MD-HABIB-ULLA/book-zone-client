@@ -43,10 +43,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/categorie/:category",
-        loader: ({ params }) =>
-          fetch(
-            `https://book-zone-server.vercel.app/category/${params.category}`
-          ),
+       
         element: (
           <PrivateRoute>
             <Category />
