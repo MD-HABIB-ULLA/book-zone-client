@@ -72,9 +72,7 @@ const BookDetails = () => {
         console.log(err.response.data);
       });
   };
-// git add . 
-// git commit -m "updated "
-// git push
+
   return (
     <div className="flex flex-col md:flex-row justify-center items-center md:items-start md:space-x-8 p-8  dark:text-white">
       <div className="md:w-1/3">
