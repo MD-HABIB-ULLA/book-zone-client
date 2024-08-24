@@ -16,7 +16,6 @@ import Category from "./Pages/Category/Category.jsx";
 import ErrorPage from "./Pages/ErrorPage/ErrorPage.jsx";
 import BookDetails from "./Pages/BookDetails/BookDetails.jsx";
 import UpdatePage from "./Pages/Update/UpdatePage.jsx";
-// import SearchShow from "./Pages/SearchDataShow/SearchShow.jsx";
 import Search from "./Components/Search/Search.jsx";
 
 const router = createBrowserRouter([
