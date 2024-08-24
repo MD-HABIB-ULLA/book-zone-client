@@ -1,16 +1,28 @@
 import { FaRegStar, FaStar } from "react-icons/fa";
 import Rating from "react-rating";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useParams } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import axios from "axios";
 import toast from "react-hot-toast";
 import UseAxiosPublic from "../../Hooks/UseAxiosPublic";
 const BookDetails = () => {
-  const axiosPublic = UseAxiosPublic()
-  const book = useLoaderData();
+  const axiosPublic = UseAxiosPublic();
+  const { id } = useParams();
+  const [book, setBook] = useState(null);
+
+  useEffect(() => {
+    axiosPublic
+      .get(`/books/${id}`)
+      .then((response) => {
+        setBook(response.data);
+      })
+      .catch((error) => {
+        console.error("There was an error fetching the book data!", error);
+      });
+  }, [axiosPublic, id]);
   const { user } = useContext(AuthContext);
   const today = new Date();
   const day = String(today.getDate()).padStart(2, "0");
@@ -18,7 +30,7 @@ const BookDetails = () => {
   const year = today.getFullYear();
   console.log(user.email);
   const [returnDate, setReturnDate] = useState(new Date());
-  const [quantity, setQuantity] = useState(book.bookData.quantity);
+  const [quantity, setQuantity] = useState(book?.bookData.quantity);
   console.log(quantity);
   const handleSubmit = (e, book) => {
     e.preventDefault();
@@ -39,10 +51,9 @@ const BookDetails = () => {
         if (res.data.acknowledged) {
           setQuantity(quantity - 1);
           axios
-            .post(
-              `/updatequantity/${incrementBookQuantity}`,
-              { incrementBookQuantity }
-            )
+            .post(`/updatequantity/${incrementBookQuantity}`, {
+              incrementBookQuantity,
+            })
             .then((res) => {
               console.log(res.data);
               toast.success(" This book added to the borrowed list.");
@@ -62,25 +73,27 @@ const BookDetails = () => {
         console.log(err.response.data);
       });
   };
-
+// git add . 
+// git commit -m "updated "
+// git push
   return (
     <div className="flex flex-col md:flex-row justify-center items-center md:items-start md:space-x-8 p-8  dark:text-white">
       <div className="md:w-1/3">
         <img
-          src={book.bookData.image}
+          src={book?.bookData.image}
           alt="Project Management for the 21st Century"
           className="w-full h-auto rounded-lg shadow-md dark:shadow-gray-700"
         />
       </div>
       <div className="md:w-2/3">
         <h1 className="text-3xl font-bold mb-4 dark:text-white">
-          {book.bookData.name}
+          {book?.bookData.name}
         </h1>
         <p className="mb-4 dark:text-gray-400">
-          <span className="font-bold">Author:</span> {book.bookData.author}
+          <span className="font-bold">Author:</span> {book?.bookData.author}
         </p>
         <p className="mb-4 dark:text-gray-400">
-          <span className="font-bold">Category:</span> {book.bookData.category}
+          <span className="font-bold">Category:</span> {book?.bookData.category}
         </p>
         <p className="mb-4 dark:text-gray-400">
           <span className="font-bold">Quantity:</span> {quantity}
@@ -94,18 +107,18 @@ const BookDetails = () => {
             fullSymbol={
               <FaStar className="text-yellow-500 mr-1 dark:text-yellow-400" />
             }
-            initialRating={book.bookData.rating}
+            initialRating={book?.bookData.rating}
             readonly
           />
         </div>
-        <p className="dark:text-gray-400">{book.bookData.description}</p>
+        <p className="dark:text-gray-400">{book?.bookData.description}</p>
         <div className="mt-10">
           <button
             type="submit"
             disabled={quantity === 0 ? true : false}
             onClick={() => document.getElementById("my_modal_3").showModal()}
             className={`${
-              parseInt(book.bookData.quantity) === 0
+              parseInt(book?.bookData.quantity) === 0
                 ? "bg-yellow-500 cursor-not-allowed !important"
                 : "bg-gradient-to-r from-[#9e24b2] to-[#4724b2]"
             } text-white font-bold border-none btn uppercase`}

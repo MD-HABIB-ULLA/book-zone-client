@@ -79,8 +79,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/books/:id",
-        loader: ({ params }) =>
-          fetch(`https://book-zone-server.vercel.app/books/${params.id}`),
+       
         element: (
           <PrivateRoute>
             <BookDetails />
@@ -89,8 +88,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/update/:id",
-        loader: ({ params }) =>
-          fetch(`https://book-zone-server.vercel.app/books/${params.id}`),
+       
         element: (
           <PrivateRoute>
             <UpdatePage />

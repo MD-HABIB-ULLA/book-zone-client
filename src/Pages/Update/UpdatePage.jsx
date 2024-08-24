@@ -1,6 +1,6 @@
 import { Typography } from "@mui/material";
 import img from "../../assets/addbooks.svg";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useParams } from "react-router-dom";
 import Button from "../../Components/Button/Button";
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -8,6 +8,8 @@ import UseAxiosPublic from "../../Hooks/UseAxiosPublic";
 // import Rating from "react-rating";
 
 const UpdatePage = () => {
+  const {id} = useParams()
+  console.log(id)
   const axiosPublic = UseAxiosPublic()
   const data = useLoaderData();
  console.log(data)

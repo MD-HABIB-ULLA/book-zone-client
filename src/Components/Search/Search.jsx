@@ -4,15 +4,17 @@ import { FaRegStar, FaSearch, FaStar } from "react-icons/fa";
 import { Button, Rating } from "@mui/material";
 import { Link } from "react-router-dom";
 import { TfiWrite } from "react-icons/tfi";
+import UseAxiosPublic from "../../Hooks/UseAxiosPublic";
 
 const Search = () => {
+  const axiosPublic = UseAxiosPublic()
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
 
   const handleSearch = async () => {
     try {
-      const response = await axios.post(
-        "https://book-zone-server.vercel.app/search",
+      const response = await axiosPublic.post(
+        "/search",
         {
           query: query,
         }
