@@ -70,21 +70,7 @@ const AllBooks = () => {
               </svg>
             </div>
           </div>
-          <div className="flex items-center px-3 py-2 text-3xl bg-gradient-to-r from-[#9e24b2] to-[#4724b2] rounded-full">
-            <CiViewTable
-              onClick={() => setFormet("table")}
-              className={`cursor-pointer border-r pr-2 font-bold ${
-                formet === "table" ? "text-info" : "text-white"
-              }`}
-            />
-
-            <CiCreditCard1
-              onClick={() => setFormet("card")}
-              className={`cursor-pointer pl-2 font-bold ${
-                formet === "card" ? "text-info" : "text-white"
-              }`}
-            />
-          </div>
+          
         </div>
 
         {/* showing data  */}
