@@ -5,7 +5,6 @@ import Button from "../../Components/Button/Button";
 import toast from "react-hot-toast";
 import UseAxiosPublic from "../../Hooks/UseAxiosPublic";
 import { useEffect, useState } from "react";
-// import Rating from "react-rating";
 
 const UpdatePage = () => {
   const axiosPublic = UseAxiosPublic();
