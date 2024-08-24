@@ -15,7 +15,6 @@ const AllBooks = () => {
 
 
   const selectedOption = (e) => {
-    // console.log(e.target.value)
     setBooksValue(e.target.value);
     // if (e.target.value === "all") {
     //   console.log(booksValue);
