@@ -9,7 +9,6 @@ const AllBooks = () => {
   const [booksData, setBookData] = useState([]);
   const axiosPublic = UseAxiosPublic();
 
-  // const { loading } = useContext(AuthContext);
   const [loading1, setLoading] = useState(true);
   const [formet, setFormet] = useState("card");
   const [booksValue, setBooksValue] = useState("all");
