@@ -7,7 +7,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import Button from "../Button/Button";
 import { Link } from "react-router-dom";
 const SwiperBanner = () => {
-  const customHeight = "calc(100vh - 6rem)";
   return (
     <div>
       <div className=" max-w-7xl m-auto md:px-10 px-5 mt-10  ">
@@ -56,7 +55,7 @@ const SwiperBanner = () => {
               <div className=" grid grid-cols-2 bg-[#7224B2]/15 md:px-10 px-5 md:py-10 py-5 rounded-2xl ">
                 <div className="">
                   <h1 className="dark:text-white  duration-500 text-black mb-5 lg:text-5xl md:text-3xl text-xl font-bold ">
-                    The Bookworm's Haven Where Dreams Take Flight
+                    The Bookworms Haven Where Dreams Take Flight
                   </h1>
 
                   <p className="mb-5 lg:text-sm md:text-xs hidden md:block">
@@ -109,61 +108,7 @@ const SwiperBanner = () => {
             </div>
           </SwiperSlide>
 
-          {/* <SwiperSlide className=" w-full">
-            <div className="h-full w-full">
-              <div
-                className=" hero w-full bg-cover justify-start bg-gray-500 h-full"
-                style={{
-                  backgroundImage:
-                    "url(https://i.ibb.co/v38X1bV/jute-5973747-1280.jpg)",
-                }}
-              >
-                <div className="hero-overlay  bg-transparent bg-gradient-to-r from-[#1a0303f6]"></div>
-                <div className="md:ml-10 ml-5 hero-content text-left text-neutral-content ">
-                  <div className="">
-                    <h1 className="mb-5 md:text-5xl text-3xl font-bold w-full h-full ">
-                      The Promise of Renewable Resources <br /> in Jute & Wooden
-                      Crafts
-                    </h1>
-
-                    <p className="mb-5 md:w-1/2">
-                      Jute and wood are renewable resources that can be
-                      harvested sustainably. This means that they can be
-                      replenished naturally over time, reducing the strain on
-                      natural ecosystems.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </SwiperSlide> */}
-          {/* <SwiperSlide className=" w-full h-full">
-            <div className="h-full w-full">
-              <div
-                className=" hero  w-full bg-cover justify-start bg-gray-500 h-full"
-                style={{
-                  backgroundImage:
-                    "url(https://i.ibb.co/pnc4w6y/wood-logs-stacked-1033323868-389e301792e049ef8d83caec6765bb5e.webp)",
-                }}
-              >
-                <div className="hero-overlay  bg-transparent bg-gradient-to-r from-[#1a0303f6]"></div>
-                <div className="md:ml-10 ml-5 hero-content text-left text-neutral-content ">
-                  <div className="">
-                    <h1 className="mb-5 md:text-5xl text-3xl font-bold w-full h-full ">
-                      The Enduring Durability of <br /> Jute & Wooden Crafts
-                    </h1>
-
-                    <p className="mb-5 md:w-1/2">
-                      Jute and wood are known for their durability and strength.
-                      Crafts made from these materials are long-lasting and
-                      resistant to wear and tear, making them practical and
-                      sustainable choices for everyday use.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </SwiperSlide> */}
+          
         </Swiper>
       </div>
     </div>
