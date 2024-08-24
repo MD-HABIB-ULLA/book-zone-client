@@ -123,7 +123,7 @@ const AllBooks = () => {
                   <div className="h-full cursor-pointer">
                     {" "}
                     <img
-                      className="object-cover  rounded-t-lg w-28 h-40 md:rounded-none md:rounded-l-lg"
+                      className="object-cover  rounded-lg w-28 h-40  md:rounded-lg"
                       src={book.bookData.image}
                       alt=""
                       style={{ aspectRatio: "9/10" }} // Set the desired aspect ratio here
