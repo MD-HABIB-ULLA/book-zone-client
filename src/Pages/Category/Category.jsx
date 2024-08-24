@@ -1,6 +1,5 @@
 // import { useState, useEffect } from "react";
 import { FaRegStar, FaStar } from "react-icons/fa";
-import { TfiWrite } from "react-icons/tfi";
 import Rating from "react-rating";
 import { Link, useParams } from "react-router-dom";
 import Button from "../../Components/Button/Button";
