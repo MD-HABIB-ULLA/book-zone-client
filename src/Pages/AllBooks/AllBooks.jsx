@@ -13,7 +13,6 @@ const AllBooks = () => {
   const [formet, setFormet] = useState("card");
   const [booksValue, setBooksValue] = useState("all");
 
-  // console.log(formbooksData);
 
   // console.log(totalcount)
   const selectedOption = (e) => {
