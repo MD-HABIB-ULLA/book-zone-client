@@ -1,4 +1,3 @@
-import axios from "axios";
 import { TfiWrite } from "react-icons/tfi";
 import { FaRegStar, FaStar } from "react-icons/fa";
 
