@@ -1,10 +1,8 @@
 import { FaRegStar, FaStar } from "react-icons/fa";
-
 import { useEffect, useState } from "react";
 import Rating from "react-rating";
 import { CiViewTable } from "react-icons/ci";
 import { CiCreditCard1 } from "react-icons/ci";
-// import { AuthContext } from "../../Provider/AuthProvider";
 import { Link } from "react-router-dom";
 import UseAxiosPublic from "../../Hooks/UseAxiosPublic";
 const AllBooks = () => {
