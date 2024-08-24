@@ -1,4 +1,3 @@
-// import { useState, useEffect } from "react";
 import { FaRegStar, FaStar } from "react-icons/fa";
 import Rating from "react-rating";
 import { Link, useParams } from "react-router-dom";
