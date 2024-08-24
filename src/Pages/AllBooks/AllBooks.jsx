@@ -14,7 +14,6 @@ const AllBooks = () => {
   const [booksValue, setBooksValue] = useState("all");
 
 
-  // console.log(totalcount)
   const selectedOption = (e) => {
     // console.log(e.target.value)
     setBooksValue(e.target.value);
