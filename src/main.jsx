@@ -43,12 +43,8 @@ const router = createBrowserRouter([
       },
       {
         path: "/categorie/:category",
-       
-        element: (
-          <PrivateRoute>
-            <Category />
-          </PrivateRoute>
-        ),
+
+        element: <Category />,
       },
       {
         path: "/addbook",
@@ -60,11 +56,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/allbooks",
-        element: (
-          <PrivateRoute>
-            <AllBooks />
-          </PrivateRoute>
-        ),
+        element: <AllBooks />,
       },
       {
         path: "/borrowedbooks",
@@ -76,7 +68,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/books/:id",
-       
+
         element: (
           <PrivateRoute>
             <BookDetails />
@@ -85,7 +77,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/update/:id",
-       
+
         element: (
           <PrivateRoute>
             <UpdatePage />
