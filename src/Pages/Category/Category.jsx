@@ -4,7 +4,6 @@ import Rating from "react-rating";
 import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import UseAxiosPublic from "../../Hooks/UseAxiosPublic";
-import axios from "axios";
 // import { useEffect, useState } from "react";
 
 const Category = () => {
