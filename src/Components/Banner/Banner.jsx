@@ -6,7 +6,6 @@ const Banner = () => {
   return (
     <div
       className=" bg-right-top bg-mobile bg-contain  max-w-7xl m-auto md:px-10  px-5  bg-no-repeat  "
-      // style={{ backgroundImage: "url(https://i.ibb.co/zx40tDm/Group-1-3.png)" }}
     >
       <Navber />
       <div className="">
