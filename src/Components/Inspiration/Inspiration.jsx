@@ -21,13 +21,13 @@ const Inspiration = () => {
             </div>
 
             <div>
-              <h2 className="text-3xl font-bold leading-tight text-black sm:text-4xl lg:text-5xl">
+              <h2 className="text-3xl font-bold leading-tight text-black dark:text-white sm:text-4xl lg:text-5xl">
                 Gateway to Infinite{" "}
                 <span className="border-b-2 border-[#7224b2] text-[#7224b2]">
                   Knowledge
                 </span>
               </h2>
-              <p className="mt-4 text-base leading-relaxed text-gray-600">
+              <p className="mt-4 text-base leading-relaxed text-gray-600 dark:text-white">
                 Gateway to Infinite Knowledge is a digital library that opens
                 the door to endless learning opportunities. Explore a vast array
                 of books, research materials, and educational resources designed
@@ -42,3 +42,4 @@ const Inspiration = () => {
 };
 
 export default Inspiration;
+
