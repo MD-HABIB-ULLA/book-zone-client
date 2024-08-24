@@ -9,7 +9,6 @@ const BorrowedBooks = () => {
   const { user } = useContext(AuthContext);
   const { email } = user;
 
-  //   console.log(email);
   useEffect(() => {
     axiosPublic
       .get(`/borrowedBooks/${email}`)
