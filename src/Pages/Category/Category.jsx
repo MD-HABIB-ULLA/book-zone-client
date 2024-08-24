@@ -21,10 +21,7 @@ const Category = () => {
   }, [axiosPublic, category]);
   console.log(booksData, category)
 
-  // useEffect(() => {
-  //   setBookData(categoryBasedBooks);
-  // }, [categoryBasedBooks]);
-  // const [booksData, setBookData] = useState([]);
+  
   return (
     <div className="max-w-7xl m-auto  md:px-10 px-5">
       <div className="text-center text-5xl font-bold text-[#7224b2] py-10">
