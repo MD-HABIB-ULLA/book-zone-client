@@ -114,12 +114,12 @@ const SignUp = () => {
     }
   };
   return (
-    <div className=" lg:px-56 m-auto container py-5 px-2">
+    <div className="  m-auto max-w-7xl md:px-10 px-5 py-5 ">
       <div className="flex md:flex-row-reverse flex-col  bg-gradient-to-br rounded-tr-3xl rounded-bl-3xl from-[#9e24b2] to-[#4724b2] rounded-l-none">
         <div className=" md:w-2/5 space-y-5 flex flex-col justify-between">
           <div className="p-5  space-y-4">
-            <p className="text-white  text-3xl">Register </p>
-            <p className="text-white  text-xl">
+            <p className="text-white  md:text-3xl text-xl font-bold text-center ">Register </p>
+            <p className="text-white  md:text-xl text-sm text-center">
               Enter your personal details and start journey with us.{" "}
             </p>
           </div>
@@ -232,8 +232,8 @@ const SignUp = () => {
                 onSubmit={handleSubmit(onSubmit)}
                 className="md:px-10 space-y-4"
               >
-                <div className="flex gap-3">
-                  <div>
+                <div className="flex w-full  gap-3">
+                  <div className="w-full">
                     <TextField
                       label="Enter Name"
                       {...register("name", { required: true })}
@@ -246,7 +246,7 @@ const SignUp = () => {
                       <span className="text-red-500">Name is required</span>
                     )}
                   </div>
-                  <div>
+                  <div className="w-full">
                     <TextField
                       label="Enter Photo URL"
                       {...register("photoUrl", { required: true })}

@@ -97,12 +97,12 @@ const Login = () => {
   };
 
   return (
-    <div className=" lg:px-56 m-auto container py-5 p-2">
-      <div className="flex  bg-gradient-to-bl rounded-tr-3xl rounded-bl-3xl from-[#9e24b2] to-[#4724b2] rounded-l-none flex-col md:flex-row ">
+    <div className="  m-auto max-w-7xl md:px-10 px-5  py-5 p-2">
+      <div className="flex   bg-gradient-to-bl rounded-tr-3xl rounded-bl-3xl from-[#9e24b2] to-[#4724b2] rounded-l-none flex-col md:flex-row ">
         <div className=" md:w-2/5  space-y-5">
           <div className="p-5  space-y-4">
-            <p className="text-white  text-3xl">Login </p>
-            <p className="text-white  text-xl">
+            <p className="text-white  md:text-3xl text-2xl uppercase text-center font-bold">Log in </p>
+            <p className="text-white  md:text-xl text-sm text-center ">
               To keep connected with us please login with your personal info.{" "}
             </p>
           </div>
@@ -114,7 +114,7 @@ const Login = () => {
         <div className=" md:w-3/5 p-[2px]">
           <div className=" h-full bg-white md:rounded-tr-3xl rounded-tr-none rounded-bl-3xl md:rounded-bl-none p-5 flex flex-col justify-evenly">
             <div>
-              <div className="text-2xl text-center">
+              <div className="md:text-2xl text-xl text-center">
                 <p>Login with Social Profile</p>
                 <div className="flex justify-center items-center gap-10 mt-5 ">
                   {/* google button */}
@@ -216,7 +216,7 @@ const Login = () => {
               <form
                 action=""
                 onSubmit={handleSubmit(onSubmit)}
-                className="md:px-10 space-y-4"
+                className=" space-y-4"
               >
                 <div>
                   <TextField
