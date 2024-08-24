@@ -11,7 +11,12 @@ import Button from "../../Components/Button/Button";
 import img from "../../assets/addbooks.svg";
 import axios from "axios";
 import toast from "react-hot-toast";
+import UseAxiosPublic from "../../Hooks/UseAxiosPublic";
 const AddBooks = () => {
+  const axiosPublic = UseAxiosPublic();
+
+
+  // submit button function 
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -31,9 +36,9 @@ const AddBooks = () => {
       description,
       rating,
     };
-    axios
+    axiosPublic
       .post(
-        "https://book-zone-server.vercel.app/addbooks",
+        "/addbooks",
         { bookData },
         {
           withCredentials: true,
@@ -56,12 +61,13 @@ const AddBooks = () => {
             <Typography variant="h4" gutterBottom>
               Add Book
             </Typography>
+
+            {/* form  */}
             <form onSubmit={(e) => handleSubmit(e)}>
               <TextField
                 label="Image URL"
                 name="image"
                 required
-             
                 fullWidth
                 margin="normal"
               />
@@ -69,7 +75,6 @@ const AddBooks = () => {
                 label="Name"
                 required
                 name="name"
-                
                 fullWidth
                 margin="normal"
               />
@@ -130,8 +135,8 @@ const AddBooks = () => {
                 </h1>
                 <p className="text-white text-xl mt-3 pl-5">
                   Ready to add a new book to our collection? Fill in the details
-                  below, and lets expand our library together! Your
-                  contribution is appreciated.
+                  below, and lets expand our library together! Your contribution
+                  is appreciated.
                 </p>
               </div>
               <img className="mb-10 p-10" src={img} alt="" />

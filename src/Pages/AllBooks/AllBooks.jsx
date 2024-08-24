@@ -8,8 +8,10 @@ import { CiViewTable } from "react-icons/ci";
 import { CiCreditCard1 } from "react-icons/ci";
 // import { AuthContext } from "../../Provider/AuthProvider";
 import { Link } from "react-router-dom";
+import UseAxiosPublic from "../../Hooks/UseAxiosPublic";
 const AllBooks = () => {
   const [booksData, setBookData] = useState([]);
+  const axiosPublic = UseAxiosPublic();
 
   // const { loading } = useContext(AuthContext);
   const [loading1, setLoading] = useState(true);
@@ -31,8 +33,8 @@ const AllBooks = () => {
   console.log(booksValue);
   useEffect(() => {
     if (booksValue === "all") {
-      axios
-        .get("https://book-zone-server.vercel.app/books", {
+      axiosPublic
+        .get("/books", {
           withCredentials: true,
         })
         .then((res) => {
@@ -41,8 +43,8 @@ const AllBooks = () => {
         })
         .catch((err) => console.log(err));
     } else {
-      axios
-        .get("https://book-zone-server.vercel.app/quantity", {
+      axiosPublic
+        .get("/quantity", {
           withCredentials: true,
         })
         .then((res) => {

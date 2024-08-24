@@ -4,9 +4,11 @@ import { useLoaderData } from "react-router-dom";
 import Button from "../../Components/Button/Button";
 import axios from "axios";
 import toast from "react-hot-toast";
+import UseAxiosPublic from "../../Hooks/UseAxiosPublic";
 // import Rating from "react-rating";
 
 const UpdatePage = () => {
+  const axiosPublic = UseAxiosPublic()
   const data = useLoaderData();
  console.log(data)
   const handleSubmit = (e) => {
@@ -19,8 +21,8 @@ const UpdatePage = () => {
     const rating = parseFloat(form.rating.value);
     const formData = { name, author, image, category, rating };
     console.log(formData)
-    axios
-      .put(`https://book-zone-server.vercel.app/update/${data._id}`, formData)
+    axiosPublic
+      .put(`/update/${data._id}`, formData)
       .then((res) => {
         if (res.data.acknowledged) {
           toast.success("Update successful ");

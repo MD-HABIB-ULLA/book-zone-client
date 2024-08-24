@@ -2,16 +2,18 @@ import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import toast from "react-hot-toast";
+import UseAxiosPublic from "../../Hooks/UseAxiosPublic";
 
 const BorrowedBooks = () => {
+  const axiosPublic = UseAxiosPublic()
   const [bookData, setBookData] = useState([]);
   const { user } = useContext(AuthContext);
   const { email } = user;
 
   //   console.log(email);
   useEffect(() => {
-    axios
-      .get(`https://book-zone-server.vercel.app/borrowedBooks/${email}`)
+    axiosPublic
+      .get(`/borrowedBooks/${email}`)
       .then((res) => setBookData(res.data))
       .catch((err) => console.log(err));
   }, [email]);
@@ -22,12 +24,12 @@ const BorrowedBooks = () => {
     console.log(updataId);
     const returnBook = bookData.filter((book) => book._id !== bookId);
     axios
-      .delete(`https://book-zone-server.vercel.app/returnBook/${bookId}`)
+      .delete(`/returnBook/${bookId}`)
       .then((res) => {
         if (res.data.deletedCount === 1) {
           axios
             .post(
-              `https://book-zone-server.vercel.app/returnBookQuantity/${updataId}`
+              `/returnBookQuantity/${updataId}`
             )
             .then((res) => {
               if (res.data.acknowledged) {

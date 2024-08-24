@@ -11,8 +11,10 @@ import {
   updateProfile,
 } from "firebase/auth";
 import axios from "axios";
+import UseAxiosPublic from "../Hooks/UseAxiosPublic";
 export const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
+  const axiosPublic = UseAxiosPublic()
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -72,8 +74,8 @@ const AuthProvider = ({ children }) => {
         const userEmail = currentUser.email;
         const loggedUser = { email: userEmail };
 
-        axios
-          .post("https://book-zone-server.vercel.app/jwt", loggedUser, {
+        axiosPublic
+          .post("/jwt", loggedUser, {
             withCredentials: true,
           })
           .then((res) => {
@@ -83,8 +85,8 @@ const AuthProvider = ({ children }) => {
             console.error("Error fetching JWT:", err);
           });
       } else {
-        axios
-          .post("https://book-zone-server.vercel.app/logout", null, {
+        axiosPublic
+          .post("/logout", null, {
             withCredentials: true,
           })
           .then((res) => {
@@ -99,7 +101,7 @@ const AuthProvider = ({ children }) => {
     return () => {
       unsubscribe();
     };
-  }, []);
+  }, [axiosPublic]);
 
 
   //   const unsubscribe = onAuthStateChanged(auth, (currentUser) => {

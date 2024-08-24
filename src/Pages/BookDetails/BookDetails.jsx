@@ -7,7 +7,9 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import axios from "axios";
 import toast from "react-hot-toast";
+import UseAxiosPublic from "../../Hooks/UseAxiosPublic";
 const BookDetails = () => {
+  const axiosPublic = UseAxiosPublic()
   const book = useLoaderData();
   const { user } = useContext(AuthContext);
   const today = new Date();
@@ -31,14 +33,14 @@ const BookDetails = () => {
     console.log(incrementBookQuantity);
     console.log(borrowingData);
 
-    axios
-      .post("https://book-zone-server.vercel.app/addBorrowBook", borrowingData)
+    axiosPublic
+      .post("/addBorrowBook", borrowingData)
       .then((res) => {
         if (res.data.acknowledged) {
           setQuantity(quantity - 1);
           axios
             .post(
-              `https://book-zone-server.vercel.app/updatequantity/${incrementBookQuantity}`,
+              `/updatequantity/${incrementBookQuantity}`,
               { incrementBookQuantity }
             )
             .then((res) => {
