@@ -1,17 +1,29 @@
 import { Typography } from "@mui/material";
 import img from "../../assets/addbooks.svg";
-import { useLoaderData, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Button from "../../Components/Button/Button";
 import axios from "axios";
 import toast from "react-hot-toast";
 import UseAxiosPublic from "../../Hooks/UseAxiosPublic";
+import { useEffect, useState } from "react";
 // import Rating from "react-rating";
 
 const UpdatePage = () => {
-  const {id} = useParams()
-  console.log(id)
-  const axiosPublic = UseAxiosPublic()
-  const data = useLoaderData();
+  const axiosPublic = UseAxiosPublic();
+  const { id } = useParams();
+  const [data, setBook] = useState(null);
+
+  useEffect(() => {
+    axiosPublic
+      .get(`/books/${id}`)
+      .then((response) => {
+        setBook(response.data);
+      })
+      .catch((error) => {
+        console.error("There was an error fetching the book data!", error);
+      });
+  }, [axiosPublic, id]);
+  console.log(data, id)
  console.log(data)
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -67,7 +79,7 @@ const UpdatePage = () => {
                 <input
                   name="image"
                   type="text"
-                  defaultValue={data.bookData.image}
+                  defaultValue={data?.bookData.image}
                   className="w-full border border-gray-300 rounded-md px-3 py-2  text-black"
                 />
               </div>
@@ -78,7 +90,7 @@ const UpdatePage = () => {
                 <input
                   name="name"
                   type="text"
-                  defaultValue={data.bookData.name}
+                  defaultValue={data?.bookData.name}
                   className="w-full border border-gray-300 rounded-md px-3 py-2  text-black"
                 />
               </div>
@@ -88,7 +100,7 @@ const UpdatePage = () => {
                 </label>
                 <input
                   name="author"
-                  defaultValue={data.bookData.author}
+                  defaultValue={data?.bookData.author}
                   type="text"
                   className="w-full border border-gray-300 rounded-md px-3 py-2  text-black"
                 />
@@ -99,7 +111,7 @@ const UpdatePage = () => {
                 </label>
                 <select
                   name="category"
-                  defaultValue={data.bookData.category}
+                  defaultValue={data?.bookData.category}
                   className="w-full border border-gray-300 rounded-md px-3 py-2  text-black"
                 >
                   <option value="Entertainment">Entertainment</option>
@@ -117,7 +129,7 @@ const UpdatePage = () => {
                 </label>
                 <input
                   name="rating"
-                  defaultValue={data.bookData.rating}
+                  defaultValue={data?.bookData.rating}
                   type="number"
                   min="0"
                   max="5"

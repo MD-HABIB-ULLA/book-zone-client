@@ -2,7 +2,7 @@
 import { FaRegStar, FaStar } from "react-icons/fa";
 import { TfiWrite } from "react-icons/tfi";
 import Rating from "react-rating";
-import { Link, useLoaderData, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Button from "../../Components/Button/Button";
 import { useEffect, useState } from "react";
 import UseAxiosPublic from "../../Hooks/UseAxiosPublic";
