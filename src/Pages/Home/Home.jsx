@@ -10,13 +10,14 @@ import SwiperBanner from "../../Components/Swiper/Swiper";
 const Home = () => {
   return (
     <div>
+     
       <Banner />
       <Categories />
       <Feature />
       <LibraryServices />
 
       <SwiperBanner />
-      <Inspiration/>
+      <Inspiration />
       <Reviews />
       <GetUpdate />
     </div>

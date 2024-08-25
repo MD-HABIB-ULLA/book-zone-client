@@ -42,4 +42,3 @@ const Inspiration = () => {
 };
 
 export default Inspiration;
-
