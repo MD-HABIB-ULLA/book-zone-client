@@ -12,6 +12,7 @@ import GoogleBtn from "../../Components/GoogleBtn/GoogleBtn";
 const SignUp = () => {
   const {
     creatNewUser,
+
     // singInUserByGithub,
     setLoading,
     updateUserProfile,
@@ -35,6 +36,12 @@ const SignUp = () => {
     creatNewUser(data.email, data.password)
       .then((result) => {
         updateUserProfile(data.name, data.photoUrl);
+        console.log(result.user.displayName)
+        const userInfo = {
+          name: data.name,
+          email: data.email,
+        };
+        
         toast.success("Registration successful!");
         console.log(result.user);
         console.log("register sucssesful", result.user);
