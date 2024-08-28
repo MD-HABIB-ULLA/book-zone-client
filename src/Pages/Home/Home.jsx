@@ -15,7 +15,6 @@ const Home = () => {
       <Categories />
       <Feature />
       <LibraryServices />
-
       <SwiperBanner />
       <Inspiration />
       <Reviews />
