@@ -3,18 +3,29 @@ import google from "/google.svg";
 import { AuthContext } from "../../Provider/AuthProvider";
 import toast from "react-hot-toast";
 import { useLocation, useNavigate } from "react-router-dom";
+import UseAxiosPublic from "../../Hooks/UseAxiosPublic";
 
 const GoogleBtn = () => {
-  const { signOutUser, singInUserByGoogle , setLoading} = useContext(AuthContext);
+  const { signOutUser, singInUserByGoogle, setLoading } =
+    useContext(AuthContext);
 
   const location = useLocation();
   const navigate = useNavigate();
+  const axiosPublic = UseAxiosPublic();
   const handleGoogleButton = () => {
     signOutUser();
     singInUserByGoogle()
-      .then(() => {
-        toast.success("Signin successful ");
-        navigate(location?.state ? location.state : "/");
+      .then((res) => {
+        if (res.user.displayName) {
+          const userInfo = {
+            name: res?.user.displayName,
+            email: res?.user.email,
+          };
+          axiosPublic.post("/users", userInfo).then((res) => {
+            toast.success("Signin successful ");
+            navigate(location?.state ? location.state : "/");
+          });
+        }
       })
       .catch((error) => {
         console.log(error);

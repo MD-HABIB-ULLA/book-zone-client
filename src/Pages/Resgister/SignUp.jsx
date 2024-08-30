@@ -8,15 +8,17 @@ import { useForm } from "react-hook-form";
 import { AuthContext } from "../../Provider/AuthProvider";
 import toast from "react-hot-toast";
 import GoogleBtn from "../../Components/GoogleBtn/GoogleBtn";
+import UseAxiosPublic from "../../Hooks/UseAxiosPublic";
+import axios from "axios";
 
 const SignUp = () => {
+  const axiosPublic = UseAxiosPublic();
   const {
     creatNewUser,
 
     // singInUserByGithub,
     setLoading,
     updateUserProfile,
-
   } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
   const togglePasswordVisibility = () => {
@@ -33,33 +35,53 @@ const SignUp = () => {
 
   const onSubmit = (data, e) => {
     console.log(data);
-    creatNewUser(data.email, data.password)
-      .then((result) => {
-        updateUserProfile(data.name, data.photoUrl);
-        console.log(result.user.displayName)
-        const userInfo = {
-          name: data.name,
-          email: data.email,
-        };
-        
-        toast.success("Registration successful!");
-        console.log(result.user);
-        console.log("register sucssesful", result.user);
-        navigate(location?.state ? location.state : "/");
-        e.target.reset();
-      })
-      .catch((error) => {
-        console.log(error);
-        if (
-          error.code === "auth/account-exists-with-different-credential" ||
-          error.code === "auth/email-already-in-use"
-        ) {
-          toast.error("This email alreay exist");
-          setLoading(false);
+    const imageFile = { image: data.image[0] };
+    axios
+      .post(
+        `https://api.imgbb.com/1/upload?key=8902878cbfedd881086558bdc3ace747`,
+        imageFile,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
         }
+      )
+      .then((res) => {
+        const image = res.data.data.display_url;
+        creatNewUser(data.email, data.password)
+          .then((result) => {
+            updateUserProfile(data.name, image);
+            console.log(result.user.displayName);
+            const userInfo = {
+              name: data.name,
+              email: data.email,
+            };
+            axiosPublic
+              .post("/users", userInfo)
+              .then((res) => {
+                if (res.data.insertedId) {
+                  toast.success("Registration successful!");
+                  navigate(location?.state ? location.state : "/");
+                  e.target.reset();
+                }
+              })
+              .catch((err) => {
+                toast.error("This email alreay exist");
+              });
+          })
+          .catch((error) => {
+            console.log(error);
+            if (
+              error.code === "auth/account-exists-with-different-credential" ||
+              error.code === "auth/email-already-in-use"
+            ) {
+              toast.error("This email alreay exist");
+              setLoading(false);
+            }
+          });
       });
- };
- 
+  };
+
   // const handleGithubButton = () => {
   //   signOutUser();
   //   singInUserByGithub()
@@ -83,7 +105,6 @@ const SignUp = () => {
   //     });
   // };
 
-
   const validatePassword = (value) => {
     const uppercaseRegex = /[A-Z]/;
     const specialCharacterRegex = /[!@#$%^&*(),.?":{}|<>]/;
@@ -104,7 +125,9 @@ const SignUp = () => {
       <div className="flex md:flex-row-reverse flex-col  bg-gradient-to-br rounded-tr-3xl rounded-bl-3xl from-[#9e24b2] to-[#4724b2] rounded-l-none">
         <div className=" md:w-2/5 space-y-5 flex flex-col justify-between">
           <div className="p-5  space-y-4">
-            <p className="text-white  md:text-3xl text-xl font-bold text-center ">Register </p>
+            <p className="text-white  md:text-3xl text-xl font-bold text-center ">
+              Register{" "}
+            </p>
             <p className="text-white  md:text-xl text-sm text-center">
               Enter your personal details and start journey with us.{" "}
             </p>
@@ -121,10 +144,8 @@ const SignUp = () => {
                 <p>Create an Account</p>
                 <div className="flex justify-center items-center gap-10 mt-5 ">
                   {/* google button */}
-               
-                 <GoogleBtn/>
 
-                 
+                  <GoogleBtn />
                 </div>
               </div>
               <div className="flex flex-col w-full">
@@ -149,19 +170,6 @@ const SignUp = () => {
                     />
                     {errors.name && (
                       <span className="text-red-500">Name is required</span>
-                    )}
-                  </div>
-                  <div className="w-full">
-                    <TextField
-                      label="Enter Photo URL"
-                      {...register("photoUrl", { required: true })}
-                      type="text"
-                      autoComplete="current-password"
-                      variant="standard"
-                      className="w-full"
-                    />
-                    {errors.photoUrl && (
-                      <span className="text-red-500">PhotoUrl is required</span>
                     )}
                   </div>
                 </div>
@@ -211,6 +219,25 @@ const SignUp = () => {
                     </span>
                   )}
                 </div>
+                <div>
+                  <label
+                    htmlFor="image"
+                    className="block mb-2 text-sm font-medium text-black"
+                  >
+                    Choose Your Image
+                  </label>
+                  <input
+                    name="image"
+                    accept="image/*"
+                    {...register("image", { required: true })}
+                    className="block w-full text-sm text-gray-900 border px-3 py-2 rounded-lg bg-white cursor-pointer bg-gray-50 focus:outline-none border-gray-300 placeholder-gray-400"
+                    id="file_input"
+                    type="file"
+                  />
+                  {errors.image && (
+                    <span className="text-red-500">image is required</span>
+                  )}
+                </div>
                 <div className="flex justify-center">
                   <Button text="Create Account" />
                 </div>
@@ -230,4 +257,3 @@ const SignUp = () => {
 };
 
 export default SignUp;
-
